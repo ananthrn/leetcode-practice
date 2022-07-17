@@ -62,8 +62,8 @@ public:
         set<int> positions;
         
         for(int i = 0; i < paint.size(); i++){
-            records.push_back({paint[i][0], i, 1});
-            records.push_back({paint[i][1], i, -1});
+            records.push_back({paint[i][0], 1, i});
+            records.push_back({paint[i][1], -1, i});
             positions.insert(paint[i][0]);
             positions.insert(paint[i][1]);
         }
@@ -90,13 +90,10 @@ public:
             // cout<<endl;
             
             while(i < records.size() and records[i][0] == pos){
-                // cout<<"i, records[i]: "<<i<<": "<<records[i][0]<<" "<<records[i][1]<<" "<<records[i][2]<<endl;
-                if(records[i][2] == 1){
-                    // cout<<"inserting index: "<<records[i][1]<<endl;
-                    indices.insert(records[i][1]);
+                if(records[i][1] == 1){
+                    indices.insert(records[i][2]);
                 } else {
-                    // cout<<"erasing index: "<<records[i][1]<<endl;
-                    indices.erase(records[i][1]);
+                    indices.erase(records[i][2]);
                 }
                 
                 i+=1;
