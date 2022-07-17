@@ -58,10 +58,53 @@ class Solution {
 public:
     vector<int> amountPainted(vector<vector<int>>& paint) {
         vector<int> ans(paint.size(), 0);
-        SortedIntervals SI;
+        vector<vector<int>> records;
+        set<int> positions;
         
         for(int i = 0; i < paint.size(); i++){
-            ans[i] = SI.insert(paint[i]);
+            records.push_back({paint[i][0], i, 1});
+            records.push_back({paint[i][1], i, -1});
+            positions.insert(paint[i][0]);
+            positions.insert(paint[i][1]);
+        }
+        
+        sort(records.begin(), records.end());
+        set<int> indices;
+        
+        int last_pos = *(positions.begin());
+        
+        int i = 0;
+        for(const auto &pos: positions){
+            
+            int smallestIndex = *(indices.begin());
+            
+            // if(last_pos > 0)
+            if(not indices.empty())
+                ans[smallestIndex] += pos - last_pos;
+            
+            // cout<<"pos: "<<pos<<endl;
+            // cout<<"indices.empty(): "<<indices.empty()<<endl;
+            // cout<<"last_pos: "<<last_pos<<endl;
+            // cout<<"smallestIndex: "<<smallestIndex<<endl;
+            // cout<<"ans[smallestIndex]: "<<ans[smallestIndex]<<endl;
+            // cout<<endl;
+            
+            while(i < records.size() and records[i][0] == pos){
+                // cout<<"i, records[i]: "<<i<<": "<<records[i][0]<<" "<<records[i][1]<<" "<<records[i][2]<<endl;
+                if(records[i][2] == 1){
+                    // cout<<"inserting index: "<<records[i][1]<<endl;
+                    indices.insert(records[i][1]);
+                } else {
+                    // cout<<"erasing index: "<<records[i][1]<<endl;
+                    indices.erase(records[i][1]);
+                }
+                
+                i+=1;
+            }
+            
+            // cout<<endl;
+            
+            last_pos = pos;
         }
         
         return ans;
