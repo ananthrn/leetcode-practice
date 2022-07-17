@@ -59,51 +59,70 @@ public:
     vector<int> amountPainted(vector<vector<int>>& paint) {
         vector<int> ans(paint.size(), 0);
         vector<vector<int>> records;
-        set<int> positions;
+        // set<int> positions;
         
         for(int i = 0; i < paint.size(); i++){
-            records.push_back({paint[i][0], 1, i});
-            records.push_back({paint[i][1], -1, i});
-            positions.insert(paint[i][0]);
-            positions.insert(paint[i][1]);
+            records.push_back({paint[i][0], i, 1});
+            records.push_back({paint[i][1], i, -1});
+            // positions.insert(paint[i][0]);
+            // positions.insert(paint[i][1]);
         }
         
         sort(records.begin(), records.end());
         set<int> indices;
         
-        int last_pos = *(positions.begin());
+        int last_pos = records[0][0];
         
         int i = 0;
-        for(const auto &pos: positions){
+//         for(const auto &pos: positions){
             
-            int smallestIndex = *(indices.begin());
+//             int smallestIndex = *(indices.begin());
             
-            // if(last_pos > 0)
-            if(not indices.empty())
-                ans[smallestIndex] += pos - last_pos;
+//             // if(last_pos > 0)
+//             if(not indices.empty())
+//                 ans[smallestIndex] += pos - last_pos;
             
-            // cout<<"pos: "<<pos<<endl;
-            // cout<<"indices.empty(): "<<indices.empty()<<endl;
-            // cout<<"last_pos: "<<last_pos<<endl;
-            // cout<<"smallestIndex: "<<smallestIndex<<endl;
-            // cout<<"ans[smallestIndex]: "<<ans[smallestIndex]<<endl;
-            // cout<<endl;
+//             // cout<<"pos: "<<pos<<endl;
+//             // cout<<"indices.empty(): "<<indices.empty()<<endl;
+//             // cout<<"last_pos: "<<last_pos<<endl;
+//             // cout<<"smallestIndex: "<<smallestIndex<<endl;
+//             // cout<<"ans[smallestIndex]: "<<ans[smallestIndex]<<endl;
+//             // cout<<endl;
             
-            while(i < records.size() and records[i][0] == pos){
-                if(records[i][1] == 1){
-                    indices.insert(records[i][2]);
-                } else {
-                    indices.erase(records[i][2]);
-                }
+//             while(i < records.size() and records[i][0] == pos){
+//                 if(records[i][1] == 1){
+//                     indices.insert(records[i][2]);
+//                 } else {
+//                     indices.erase(records[i][2]);
+//                 }
                 
-                i+=1;
+//                 i+=1;
+//             }
+            
+//             // cout<<endl;
+            
+//             last_pos = pos;
+//         }
+        
+        for(const auto& record: records)
+        {
+            int pos = record[0];
+            int ind = record[1];
+            int start = record[2];
+            
+            if(not indices.empty()){
+                int smallestInd = *(indices.begin());
+                ans[smallestInd] += pos - last_pos;
             }
             
-            // cout<<endl;
-            
             last_pos = pos;
+            
+            if(start == 1){
+                indices.insert(ind);
+            }else{
+                indices.erase(ind);
+            }
         }
-        
         return ans;
     }
 };
