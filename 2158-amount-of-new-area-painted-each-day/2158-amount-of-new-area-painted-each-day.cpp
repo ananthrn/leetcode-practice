@@ -104,11 +104,11 @@ public:
 //             last_pos = pos;
 //         }
         
-        for(const auto& record: records)
+        for(int j = 0; j<records.size(); j++)
         {
-            int pos = record[0];
-            int ind = record[1];
-            int start = record[2];
+            int pos = records[j][0];
+            int ind = records[j][1];
+            int start = records[j][2];
             
             if(not indices.empty()){
                 int smallestInd = *(indices.begin());
