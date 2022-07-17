@@ -62,8 +62,8 @@ public:
         // set<int> positions;
         
         for(int i = 0; i < paint.size(); i++){
-            records.push_back({paint[i][0], i, 1});
-            records.push_back({paint[i][1], i, -1});
+            records.push_back({paint[i][0], 1, i});
+            records.push_back({paint[i][1], -1, i});
             // positions.insert(paint[i][0]);
             // positions.insert(paint[i][1]);
         }
@@ -104,11 +104,11 @@ public:
 //             last_pos = pos;
 //         }
         
-        for(int j = 0; j<records.size(); j++)
+        for(const auto& record: records)
         {
-            int pos = records[j][0];
-            int ind = records[j][1];
-            int start = records[j][2];
+            int pos = record[0];
+            int ind = record[2];
+            int start = record[1];
             
             if(not indices.empty()){
                 int smallestInd = *(indices.begin());
