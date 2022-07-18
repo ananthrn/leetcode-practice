@@ -31,9 +31,9 @@ public:
     }
     
     int query(int index){
-        int sm = 0; // bit[index];
+        int sm = 0; 
         
-        while(index >=0 ){
+        while(index >= 0 ){
             sm += bit[index];
             index = getLower(index) - 1;
             // cout<<"sm, index: "<<sm<<" "<<index<<endl;
