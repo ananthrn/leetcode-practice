@@ -60,16 +60,18 @@ public:
                 
                 // cout<<"server Release time: "<<
             }
-            int nextTime = -1;
-            if(currentTime < tasks.size()){
-                nextTime = currentTime + 1;
-            } else {
-                if(not timeServers.empty()){
-                   nextTime = timeServers.begin()->first;
-                } else {
-                    nextTime = currentTime + 1;
-                }
-            }
+            // int nextTime = -1;
+            // if(currentTime < tasks.size()){
+            //     nextTime = currentTime + 1;
+            // } else {
+            //     if(not timeServers.empty()){
+            //        nextTime = timeServers.begin()->first;
+            //     } else {
+            //         nextTime = currentTime + 1;
+            //     }
+            // }
+            
+            int nextTime = (currentTime < tasks.size() or timeServers.empty())?currentTime + 1: (timeServers.begin())->first;
             // cout<<"nextTime: "<<nextTime<<endl;
             // cout<<endl;
             
