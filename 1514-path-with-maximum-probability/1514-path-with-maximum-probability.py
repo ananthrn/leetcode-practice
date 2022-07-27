@@ -40,27 +40,6 @@ class Solution:
         seen = n * [0]
         probMap = n * [0.0]
         
-        def dfs(start: int, end: int) -> float:
-            if(seen[start] == 2):
-                return probMap[start]
-            
-            if(start == end):
-                seen[start] = 2
-                probMap[start] = 1.0
-                return 1.0
-            
-            currentMax = 0.0
-            seen[start] = 1
-            for nxNode, succProb in adj.get(start, []):
-                if seen[nxNode] == 0:
-                    dfs(nxNode, end)
-                    
-                currentMax = max(currentMax, succProb * probMap[nxNode])
-            
-            seen[start] = 2
-            probMap[start] = currentMax
-            return currentMax 
-        
-        return dfs(start, end)
+
         
         
