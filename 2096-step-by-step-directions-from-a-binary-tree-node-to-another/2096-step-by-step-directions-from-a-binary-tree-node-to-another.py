@@ -15,12 +15,12 @@ class Solution:
         leftCheck, leftDirs = self.getRootDirections(root.left, value)
         
         if(leftCheck):
-            return True, 'L' + leftDirs
+            return True, f"L{leftDirs}"
         
         rightCheck, rightDirs = self.getRootDirections(root.right, value)
         
         if(rightCheck):
-            return True, 'R' + rightDirs
+            return True, f"R{rightDirs}"
         
         return False, ""
         
