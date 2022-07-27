@@ -7,7 +7,6 @@ class Solution:
         
         while(not len(Q) == 0):
             probNode, tpNode = Q.pop()
-            # del Q[0]
             
             prob[tpNode] = probNode
             
