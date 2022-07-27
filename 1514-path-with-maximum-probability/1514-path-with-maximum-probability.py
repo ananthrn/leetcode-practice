@@ -22,17 +22,10 @@ class Solution:
             
     
     def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start: int, end: int) -> float:
-        adj = dict()
+        adj = defaultdict(list)
         for edge, prob in zip(edges, succProb):
-            if(edge[0] in adj):
-                adj[edge[0]].append([edge[1], prob])
-            else:
-                adj[edge[0]] = [[edge[1], prob]]
-            
-            if(edge[1] in adj):
-                adj[edge[1]].append([edge[0], prob])
-            else:
-                adj[edge[1]] = [[edge[0], prob]]
+            adj[edge[0]].append([edge[1], prob])
+            adj[edge[1]].append([edge[0], prob])
                 
         return self.dijkstra(n, start, end, adj)
         
