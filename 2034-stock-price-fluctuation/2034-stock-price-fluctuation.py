@@ -1,16 +1,16 @@
-from sortedcontainers import SortedList
+from sortedcontainers import SortedList, SortedDict
 
 class StockPrice:
 
     def __init__(self):
         self.prices = SortedList()
-        self.timestamps = SortedList()
-        self.timeToPrice = dict()
+        # self.timestamps = SortedList()
+        self.timeToPrice = SortedDict()
 
     def update(self, timestamp: int, price: int) -> None:
-        if timestamp not in self.timestamps:
+        if timestamp not in self.timeToPrice:
             self.prices.add(price)
-            self.timestamps.add(timestamp)
+            # self.timestamps.add(timestamp)
             self.timeToPrice[timestamp] = price
             return
         
@@ -22,8 +22,9 @@ class StockPrice:
         return
 
     def current(self) -> int:
-        latestTimeStamp = self.timestamps[-1]
-        return self.timeToPrice[latestTimeStamp]
+        # latestTimeStamp = self.timestamps[-1]
+        latestTimeStamp, latestPrice = self.timeToPrice.peekitem()
+        return latestPrice
 
     def maximum(self) -> int:
         return self.prices[-1]
