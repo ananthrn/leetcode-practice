@@ -4,13 +4,9 @@ class StockPrice:
 
     def __init__(self):
         self.prices = SortedList()
-        self.timeToPrice = dict() #SortedDict()
-        self.latest_time = 0
+        self.timeToPrice = SortedDict()
 
     def update(self, timestamp: int, price: int) -> None:
-        
-        self.latest_time = max(self.latest_time, timestamp)
-        
         if timestamp not in self.timeToPrice:
             self.prices.add(price)
             self.timeToPrice[timestamp] = price
@@ -24,7 +20,8 @@ class StockPrice:
         return
 
     def current(self) -> int:
-        return self.timeToPrice[self.latest_time]
+        latestTimeStamp, latestPrice = self.timeToPrice.peekitem()
+        return latestPrice
 
     def maximum(self) -> int:
         return self.prices[-1]
