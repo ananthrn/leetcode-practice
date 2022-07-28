@@ -4,16 +4,12 @@ class Logger:
         self.Q = deque()
 
     def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
-        print("timestamp, message: ", timestamp, message)
-        print("Q: ", self.Q)
+
         while len(self.Q) > 0 and self.Q[0][0] <= timestamp - 10:
-            print(self.Q[0])
             self.Q.popleft()
         
         messages = [msg for time, msg in self.Q]
         
-        print("messages: ", messages)
-        print()
         if message in messages:
             return False
         
