@@ -12,6 +12,10 @@ class Solution:
             # print("time: ", time)
             while len(Q) > 0:
                 r, c = Q.popleft()
+                
+                if seen[(r, c)]:
+                    continue
+                    
                 seen[(r, c)] = True
                 
                 # print("(r, c): ", r, c)
@@ -23,7 +27,7 @@ class Solution:
                     try:
                         if(0 <= nxt_r < n and 0 <= nxt_c < n):
                             if(grid[nxt_r][nxt_c] <= time and seen[(nxt_r, nxt_c)] == False):
-                                seen[(nxt_r, nxt_c)] = True
+                                # seen[(nxt_r, nxt_c)] = True
                                 Q.append((nxt_r, nxt_c))
                     except IndexError:
                         pass
