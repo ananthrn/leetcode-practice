@@ -4,7 +4,10 @@ class Solution:
         
         # REMINDER: DO NOT DO n * [[ ]] as it creates n references to the SAME list
         
-        adj = [ list() for i in range(n)]
+        # adj = [ list() for i in range(n)]
+        
+        adj = defaultdict(list)
+        
         for emp, man in enumerate(manager):
             if man != -1:
                 adj[man].append(emp)
