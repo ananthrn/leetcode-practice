@@ -1,14 +1,24 @@
 class Logger:
 
     def __init__(self):
-        self.map = dict()
+        self.Q = deque()
 
     def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
-        if message not in self.map or self.map[message] <= timestamp - 10:
-            self.map[message] = timestamp
-            return True
-        return False
+        print("timestamp, message: ", timestamp, message)
+        print("Q: ", self.Q)
+        while len(self.Q) > 0 and self.Q[0][0] <= timestamp - 10:
+            print(self.Q[0])
+            self.Q.popleft()
         
+        messages = [msg for time, msg in self.Q]
+        
+        print("messages: ", messages)
+        print()
+        if message in messages:
+            return False
+        
+        self.Q.append([timestamp, message])
+        return True
 
 
 # Your Logger object will be instantiated and called as such:
