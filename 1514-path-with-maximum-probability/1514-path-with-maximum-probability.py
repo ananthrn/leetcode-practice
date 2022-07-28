@@ -29,9 +29,6 @@ class Solution:
                 
         return self.dijkstra(n, start, end, adj)
         
-        seen = n * [0]
-        probMap = n * [0.0]
-        
 
         
         
