@@ -24,9 +24,6 @@ class StockPrice:
         return
 
     def current(self) -> int:
-#         latestTimeStamp, latestPrice = self.timeToPrice.peekitem()
-        
-#         assert(self.latest_time == latestTimeStamp)
         return self.timeToPrice[self.latest_time]
 
     def maximum(self) -> int:
