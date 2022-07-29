@@ -3,8 +3,6 @@ class SnapshotArray:
 
     def __init__(self, length: int):
         self.array = [SortedDict([(0, 0)]) for i in range(length)]
-        # for index in range(length):
-        #     self.array[index][0] = 0
         self.snap_id = 0
         
     def set(self, index: int, val: int) -> None:
