@@ -11,9 +11,7 @@ class Solution:
             return ''.join(c)
         
         components[src] = compNum
-        
-        # nextStrs = [swap(src, i, j) for i in range(len(src)) for j in range(i + 1, len(src))]
-        
+                
         for nextStr, nextNum in components.items():
             if src != nextStr and nextNum == 0 and self.areAlmostEqual(src, nextStr):
                 self.dfs(nextStr, compNum, components)
