@@ -54,5 +54,5 @@ class Solution:
         for employee in schedule:
             for interval in employee:
                 SI.insert(interval)
-        SI.print()
+                
         return SI.getFreeTime()
