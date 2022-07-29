@@ -4,8 +4,7 @@ class Solution:
         
         m, n = len(board), len(board[0])
         wordlen = len(word)
-        # for row in board + list(zip(*board)):
-        for row in board + np.transpose(board).tolist():
+        for row in board + list(zip(*board)):
             q = ''.join(row).split('#')
             for w in word, word[::-1]:
                 for s in q:
