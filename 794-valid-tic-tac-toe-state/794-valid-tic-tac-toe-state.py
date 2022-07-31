@@ -25,7 +25,7 @@ class Solution:
         boardList = [list(row) for row in board]
         boardSeen = set()
         
-        def backtrack(r: int, c: int, val):
+        def backtrack(val):
             print("currentBoard: ", currentBoard)
             print("val: ", val)
             # boardString = 
@@ -49,13 +49,13 @@ class Solution:
                         currentBoard[nxt_r][nxt_c] =  val
                         nxtVal = 'X' if val == 'O' else 'O'
                         # print("nxt_r, nxt_c, nxtVal: ", nxt_r, nxt_c, nxtVal)
-                        nxtCheck = backtrack(nxt_r, nxt_c, nxtVal)
+                        nxtCheck = backtrack(nxtVal)
                         currentBoard[nxt_r][nxt_c] = ' '
                         if nxtCheck:
                             return True
             return False
         
-        check = backtrack(0, 0, 'X')
+        check = backtrack('X')
         
         
         return check
