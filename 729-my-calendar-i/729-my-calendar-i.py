@@ -6,17 +6,14 @@ class MyCalendar:
         
     
     def __can_add__(self, start: int, end: int) -> bool:
-        # for x1, x2 in self.intervals:
-        #     if max(x1, start) <= min(x2, end):
-        #         return True
-        # return False
         if not self.intervals:
             return True
         
         if (start, end) in self.intervals:
             return False
         
-        prev_index, next_index = self.intervals.bisect_left((start, end)) - 1, self.intervals.bisect_right((start, end))
+        prev_index = self.intervals.bisect_left((start, end)) - 1
+        next_index = self.intervals.bisect_right((start, end))
         
         if (prev_index == -1 or self.intervals[prev_index][1] <= start) and (next_index == len(self.intervals) or self.intervals[next_index][0] >= end):
             return True
