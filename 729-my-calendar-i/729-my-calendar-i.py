@@ -24,8 +24,8 @@ class MyCalendar:
         return False
         
     def book(self, start: int, end: int) -> bool:
-        if self.__can_add__(start, end - 0.5):
-            self.intervals.add((start, end -0.5))
+        if self.__can_add__(start, end):
+            self.intervals.add((start, end))
             return True
         
         
