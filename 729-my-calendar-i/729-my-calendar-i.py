@@ -2,25 +2,38 @@ from sortedcontainers import SortedList
 class MyCalendar:
 
     def __init__(self):
-        self.intervals = SortedList(key = lambda x: x[0])
+        self.intervals = SortedList()
         
     
-    def __search__(self, start: int, end: int) -> bool:
-        for x1, x2 in self.intervals:
-            if max(x1, start) <= min(x2, end):
-                return True
+    def __can_add__(self, start: int, end: int) -> bool:
+        # for x1, x2 in self.intervals:
+        #     if max(x1, start) <= min(x2, end):
+        #         return True
+        # return False
+        if not self.intervals:
+            return True
+        
+        if (start, end) in self.intervals:
+            return False
+        
+        prev_index, next_index = self.intervals.bisect_left((start, end)) - 1, self.intervals.bisect_right((start, end))
+        
+        if (prev_index == -1 or self.intervals[prev_index][1] <= start) and (next_index == len(self.intervals) or self.intervals[next_index][0] >= end):
+            return True
+        
         return False
         
     def book(self, start: int, end: int) -> bool:
-        if self.__search__(start, end - 0.5):
-            return False
+        if self.__can_add__(start, end - 0.5):
+            self.intervals.add((start, end -0.5))
+            return True
         
-        self.intervals.add([start, end-0.5])
+        
         
         # print("start, end", start, end)
         # print("intervals: ", self.intervals)
         # print()
-        return True
+        return False
         
         
         
