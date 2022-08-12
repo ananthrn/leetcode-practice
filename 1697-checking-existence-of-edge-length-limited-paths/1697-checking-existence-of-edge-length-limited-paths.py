@@ -30,7 +30,6 @@ class UnionFind:
         else:
             self.parent[par_x] = par_y
             self.size[par_y] += self.size[par_x]
-        # self.parent[par_y] = par_x
         
         
         
@@ -48,7 +47,7 @@ class Solution:
         
         currentProcessed = -1
         
-        ans = SortedDict()
+        ans = [None] * len(queries)
         
         UF = UnionFind(n)
         for (index, (a, b, edgeLength)) in queriesSorted:
@@ -61,5 +60,5 @@ class Solution:
             currentProcessed = edgeLength - 1
         
         
-        return ans.values()
+        return ans
         
