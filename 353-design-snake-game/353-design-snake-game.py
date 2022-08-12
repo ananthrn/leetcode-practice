@@ -15,7 +15,7 @@ class SnakeGame:
             "U": (-1, 0),
             "D": (1, 0)
         }
-        print("food: ", food)
+        # print("food: ", food)
         
 
     def move(self, direction: str) -> int:
@@ -27,7 +27,7 @@ class SnakeGame:
             return -1
         
         
-        print("Current self.snake: ", self.snake)
+        # print("Current self.snake: ", self.snake)
         foodFound = self.food and nextPos == self.food[0]
         if foodFound:        
             self.food.popleft()
