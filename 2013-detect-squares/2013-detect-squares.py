@@ -10,14 +10,14 @@ class DetectSquares:
 
     def count(self, point: List[int]) -> int:
         ans = 0
-        for diagPoint in self.points:
+        for diagPoint, cnt in self.pointCount.items():
             if diagPoint[0] != point[0] and diagPoint[1] != point[1]:
                 if abs(point[0] - diagPoint[0]) == abs(point[1] - diagPoint[1]):
-                    count1 = self.pointCount[(diagPoint[0], point[1])]
-                    count2 = self.pointCount[(point[0], diagPoint[1])]
+                    count1 = self.pointCount.get((diagPoint[0], point[1]), 0)
+                    count2 = self.pointCount.get((point[0], diagPoint[1]), 0)
                     # count3 = self.pointCount[tuple(diagPoint)]
 
-                    ans += count1*count2
+                    ans += cnt*count1*count2
         
         return ans
                 
