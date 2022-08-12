@@ -5,6 +5,7 @@ class UnionFind:
     def __init__(self, n: int) -> None:
         self.n = n
         self.parent = list(range(n))
+        self.size = n * [1]
     
     def getParent(self, child: int) -> int:
         par = self.parent[child]
@@ -23,7 +24,13 @@ class UnionFind:
         if par_x == par_y:
             return
         
-        self.parent[par_y] = par_x
+        if self.size[par_x] >= self.size[par_y]:
+            self.parent[par_y] = par_x
+            self.size[par_x] += self.size[par_y]
+        else:
+            self.parent[par_x] = par_y
+            self.size[par_y] += self.size[par_x]
+        # self.parent[par_y] = par_x
         
         
         
