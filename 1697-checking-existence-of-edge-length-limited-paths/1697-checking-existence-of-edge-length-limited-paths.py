@@ -53,7 +53,6 @@ class Solution:
             ans[index] = UF.check(a, b)
             currentProcessed = edgeLength - 1
         
-        print(ans)
-        print(ans.values())
+        
         return ans.values()
         
