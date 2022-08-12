@@ -1,5 +1,4 @@
 from collections import defaultdict
-from sortedcontainers import SortedDict
 
 class UnionFind:
     def __init__(self, n: int) -> None:
@@ -37,10 +36,12 @@ class UnionFind:
 class Solution:
     def distanceLimitedPathsExist(self, n: int, edgeList: List[List[int]], queries: List[List[int]]) -> List[bool]:
         
-        valToEdgeList = defaultdict(list)
+#         valToEdgeList = defaultdict(list)
         
-        for edge in edgeList:
-            valToEdgeList[edge[2]].append((edge[0], edge[1]))
+#         for edge in edgeList:
+#             valToEdgeList[edge[2]].append((edge[0], edge[1]))
+        
+        edgeList = sorted(edgeList, key = lambda x: x[2])
         
         queriesIndex = [(i, query) for i, query in enumerate(queries)]
         queriesSorted = sorted(queriesIndex, key = lambda x: x[1][2])
@@ -50,12 +51,19 @@ class Solution:
         ans = [None] * len(queries)
         
         UF = UnionFind(n)
+        
+        edgeIndex = 0
+        
         for (index, (a, b, edgeLength)) in queriesSorted:
             
-            for lengthProcessed in range(currentProcessed + 1, edgeLength):
-                for new_edge in valToEdgeList[lengthProcessed]:
-                    UF.union(new_edge[0], new_edge[1])
+            # for lengthProcessed in range(currentProcessed + 1, edgeLength):
+            #     for new_edge in valToEdgeList[lengthProcessed]:
+            #         UF.union(new_edge[0], new_edge[1])
             
+            while edgeIndex < len(edgeList) and edgeList[edgeIndex][2] < edgeLength:
+                u, v, _ = edgeList[edgeIndex]
+                UF.union(u, v)
+                edgeIndex += 1
             ans[index] = UF.check(a, b)
             currentProcessed = edgeLength - 1
         
