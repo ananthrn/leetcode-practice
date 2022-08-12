@@ -60,7 +60,7 @@ class Solution:
             
             return bestVal
         
-        bestMax = binSearch(0, int(1e9))
+        bestMax = binSearch(0, min(grid[0][0], grid[-1][-1]))
         return bestMax
 #         def dijkstra():
 #             Q = SortedList()
