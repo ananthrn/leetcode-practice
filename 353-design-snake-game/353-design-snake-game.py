@@ -26,8 +26,6 @@ class SnakeGame:
             return -1
         
         
-        
-        
         print("Current self.snake: ", self.snake)
         foodFound = self.food and nextPos == self.food[0]
         if foodFound:        
@@ -39,15 +37,7 @@ class SnakeGame:
             print(f"{nextPos} already in snake: {self.snake}")
             return -1
         self.snake.appendleft(nextPos)
-        # self.food.discard(nextPos) 
-        print("headPos: ", headPos)
-        print("dir: ", direction)
-        print("nextPos: ", nextPos)
-        print("self.food", self.food)
-        print("foodFound: ", foodFound)
-        # print("Current self.snake: ", self.snake)
-        print("Final self.snake: ", self.snake)
-        print()
+
         return len(self.snake) - 1
             
 
