@@ -7,9 +7,9 @@
 #    def dimensions(self) -> list[]:
 
 class Solution:
-    def checkCol(self,col, binaryMatrix ) -> bool:
+    def getRows(self,col, rowsToCheck, binaryMatrix ) -> bool:
         m, n = binaryMatrix.dimensions()
-        return any([binaryMatrix.get(r, col) for r in range(m)])
+        return [row for row in rowsToCheck if binaryMatrix.get(row, col)]
     
     def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
         m, n = binaryMatrix.dimensions()
@@ -18,12 +18,17 @@ class Solution:
         end = m -1
         best = m 
         
+        rowsToCheck = list(range(m))
+        
         while start <= end:
             mid = (start + end)//2
             
-            if self.checkCol(mid, binaryMatrix):
+            newRowsToCheck = self.getRows(mid, rowsToCheck, binaryMatrix)
+            
+            if len(newRowsToCheck) > 0:
                 best = min(best, mid)
                 end = mid - 1
+                rowsToCheck = newRowsToCheck
             else:
                 start = mid + 1
         
