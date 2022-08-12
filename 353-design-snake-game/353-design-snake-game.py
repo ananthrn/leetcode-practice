@@ -8,6 +8,7 @@ class SnakeGame:
         self.width = width
         self.height = height
         self.snake = deque([(0, 0)])
+        self.snake_set = set([(0, 0)])
         self.dirs = {
             "R": (0, 1),
             "L": (0, -1),
@@ -31,13 +32,16 @@ class SnakeGame:
         if foodFound:        
             self.food.popleft()
         else:
-            self.snake.pop()
+            val = self.snake.pop()
+            self.snake_set.remove(val)
         
-        if nextPos in self.snake:
+        if nextPos in self.snake_set:
             print(f"{nextPos} already in snake: {self.snake}")
             return -1
+        
         self.snake.appendleft(nextPos)
-
+        self.snake_set.add(nextPos)
+        
         return len(self.snake) - 1
             
 
