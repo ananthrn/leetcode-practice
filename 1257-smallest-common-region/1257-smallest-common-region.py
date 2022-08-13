@@ -10,15 +10,9 @@ class Solution:
         q = region2
         
         while p != q:
-            if parent.get(p, None) is not None:
-                p = parent.get(p)
-            else:
-                p = region2
-            
-            if parent.get(q, None) is not None:
-                q = parent.get(q)
-            else:
-                q = region1
+            p = parent.get(p, region2)
+            q = parent.get(q, region1)
+
         
         return p
         
