@@ -1,4 +1,5 @@
 from collections import Counter
+from sortedcontainers import SortedList
 class Solution:
     def minDeletions(self, s: str) -> int:
         currentEmpty = 0
@@ -11,14 +12,24 @@ class Solution:
         
         ans = 0
         
+        unseenFrequencies = SortedList(list(range(0, max(cntList) + 1)))
+        for cntVal in cntList:
+            unseenFrequencies.discard(cntVal)
+        
+        print("unseenFrequencies: ", unseenFrequencies)
         for cntVal in cntList:
             if cntMap[cntVal] > 0:
-                currentGap = cntVal - 1
-                while currentGap > 0 and cntMap[currentGap] > 0:
-                    currentGap -= 1
-                
+                # currentGap = cntVal - 1
+                # while currentGap > 0 and cntMap[currentGap] > 0:
+                #     currentGap -= 1
+                currentGapIndex = unseenFrequencies.bisect_left(cntVal) - 1
+                print("cntVal: ", cntVal)
+                print("currentGapIndex: ", currentGapIndex)
+                currentGap = unseenFrequencies[currentGapIndex]
                 ans += (cntVal - currentGap)
                 cntMap[currentGap] = 1
+                if currentGap > 0:
+                    unseenFrequencies.remove(currentGap)
             else:
                 cntMap[cntVal] = 1
             
