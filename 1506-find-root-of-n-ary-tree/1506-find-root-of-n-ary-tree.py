@@ -8,11 +8,15 @@ class Node:
 
 class Solution:
     def findRoot(self, tree: List['Node']) -> 'Node':
-        possibleRoots = set(tree)
+        # possibleRoot = tree[0]
+        value_xor = 0
         
         for node in tree:
+            value_xor ^= node.val
             for child in node.children:
-                possibleRoots.remove(child)
+                value_xor ^= child.val
         
-        return next(iter(possibleRoots))
-        
+        for node in tree:
+            if node.val == value_xor:
+                return node
+                    
