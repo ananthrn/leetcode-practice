@@ -16,15 +16,12 @@ class Solution:
         for cntVal in cntList:
             unseenFrequencies.discard(cntVal)
         
-        print("unseenFrequencies: ", unseenFrequencies)
+        # print("unseenFrequencies: ", unseenFrequencies)
         for cntVal in cntList:
             if cntMap[cntVal] > 0:
-                # currentGap = cntVal - 1
-                # while currentGap > 0 and cntMap[currentGap] > 0:
-                #     currentGap -= 1
                 currentGapIndex = unseenFrequencies.bisect_left(cntVal) - 1
-                print("cntVal: ", cntVal)
-                print("currentGapIndex: ", currentGapIndex)
+                # print("cntVal: ", cntVal)
+                # print("currentGapIndex: ", currentGapIndex)
                 currentGap = unseenFrequencies[currentGapIndex]
                 ans += (cntVal - currentGap)
                 cntMap[currentGap] = 1
