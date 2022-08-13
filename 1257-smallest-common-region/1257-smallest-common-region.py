@@ -1,10 +1,6 @@
 class Solution:
     def findSmallestRegion(self, regions: List[List[str]], region1: str, region2: str) -> str:
-        parent = dict()
-        
-        for regionlist in regions:
-            for i in range(1, len(regionlist)):
-                parent[regionlist[i]] = regionlist[0]
+        parent = {region[i]: region[0] for region in regions for i in range(1, len(region))}
         
         p = region1
         q = region2
