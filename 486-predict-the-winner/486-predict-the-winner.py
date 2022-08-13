@@ -7,7 +7,7 @@ class Solution:
         end = len(nums) - 1
         
         mem = {}
-        @cache
+        # @cache
         def dfs(start, end, turn, scores) -> int:
             
             if start == end:
