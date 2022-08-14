@@ -32,7 +32,7 @@ class NumMatrix:
     def __init__(self, matrix: List[List[int]]):
         self.matrix = matrix
         self.prefSums = self.getPrefSums(matrix)
-        print(self.prefSums)
+        # print(self.prefSums)
 
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
         valTotal = self.getValHelper(row1, col1, self.prefSums) # row1, col1 to end
