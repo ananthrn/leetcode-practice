@@ -1,6 +1,7 @@
 class UnionFind:
     def __init__(self, n: int):
         self.par = list(range(n+ 1))
+        self.rank = (n + 1) * [0]
         self.comps = n
         
     def find(self, x: int) -> int:
@@ -14,9 +15,12 @@ class UnionFind:
     def union(self, x: int, y: int) -> None:
         par_x, par_y = self.find(x), self.find(y)
         
-        
+        if self.rank[par_x] < self.rank[par_y]:
+            par_x, par_y = par_y, par_x
+            
         if par_x != par_y:
-            self.par[par_x] = par_y
+            self.par[par_y] = par_x
+            self.rank[par_x] += self.rank[par_y]
             self.comps -= 1
     
 
@@ -31,9 +35,9 @@ class Solution:
         uf1, uf2 = UnionFind(n), UnionFind(n)
         
         for a, b in edgeMap[3]:
-            print(f"3 edge: {a}, {b}")
-            print("exists? ", uf1.check(a, b), uf2.check(a, b))
-            print()
+            # print(f"3 edge: {a}, {b}")
+            # print("exists? ", uf1.check(a, b), uf2.check(a, b))
+            # print()
             if uf1.check(a, b) == False or uf2.check(a, b) == False:
                 e1 += 1
                 e2 += 1
