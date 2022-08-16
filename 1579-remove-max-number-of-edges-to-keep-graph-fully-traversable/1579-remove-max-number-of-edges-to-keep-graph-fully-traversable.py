@@ -43,9 +43,9 @@ class Solution:
                 res += 1
         
         for a, b in edgeMap[2]:
-            print(f"2 edge: {a}, {b}")
-            print("exists? ", uf2.check(a, b))
-            print()
+            # print(f"2 edge: {a}, {b}")
+            # print("exists? ", uf2.check(a, b))
+            # print()
             if uf2.check(a, b) == False:
                 # e1 += 1
                 e2 += 1
@@ -54,9 +54,9 @@ class Solution:
                 res += 1
         
         for a, b in edgeMap[1]:
-            print(f"1 edge: {a}, {b}")
-            print("exists? ", uf1.check(a, b))
-            print()
+            # print(f"1 edge: {a}, {b}")
+            # print("exists? ", uf1.check(a, b))
+            # print()
             if uf1.check(a, b) == False:
                 e1 += 1
                 # e2 += 1
