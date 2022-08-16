@@ -43,8 +43,6 @@ class Solution:
                 
                 for candidate in range(51):
                     if origCnt[candidate] - cnt[candidate] > 0:
-                        print("candidate: ", candidate)
-                        print("origCnt[candidate] - cnt[candidate]", origCnt[candidate] - cnt[candidate])
                         ans += (origCnt[candidate] - cnt[candidate]) * [candidate]
                 
                 solutions.add(tuple(sorted(ans)))
