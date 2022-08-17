@@ -5,9 +5,11 @@ class Solution:
         
         charToPosMap = defaultdict(list)
         
+        # create map by finding next character
         for ind, char in enumerate(s):
             charToPosMap[char].append(ind)
         
+        # for each word, finding each succesive character should happen in a new position
         def check(word) -> bool:
             currentPos = -1
             for char in word:
