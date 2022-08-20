@@ -18,9 +18,12 @@ class Solution:
             leftNodes = self.helper(start, value - 1)
             rightNodes = self.helper(value + 1, end)
             
-            for leftNode in leftNodes:
-                for rightNode in rightNodes:
-                    ans.append(TreeNode(val = value, left=leftNode, right=rightNode))
+            ansValue = [TreeNode(value, leftNode, rightNode) for leftNode in leftNodes for rightNode in rightNodes]
+            
+            ans = ans + ansValue
+            # for leftNode in leftNodes:
+            #     for rightNode in rightNodes:
+            #         ans.append(TreeNode(val = value, left=leftNode, right=rightNode))
         
         return ans
     def generateTrees(self, n: int) -> List[Optional[TreeNode]]:
