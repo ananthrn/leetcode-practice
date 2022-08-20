@@ -21,9 +21,6 @@ class Solution:
             ansValue = [TreeNode(value, leftNode, rightNode) for leftNode in leftNodes for rightNode in rightNodes]
             
             ans = ans + ansValue
-            # for leftNode in leftNodes:
-            #     for rightNode in rightNodes:
-            #         ans.append(TreeNode(val = value, left=leftNode, right=rightNode))
         
         return ans
     def generateTrees(self, n: int) -> List[Optional[TreeNode]]:
