@@ -1,9 +1,11 @@
 class Solution:
     def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         m, n = len(matrix), len(matrix[0])
-        @cache
+        cache = {}
         def backtrack(row: int, col: int) -> int:
             # currentVal = 0
+            if (row, col) in cache:
+                return cache[(row, col)]
             
             ans = 0 
             
@@ -17,6 +19,7 @@ class Solution:
                     if matrix[new_row][new_col] > matrix[row][col]:
                         ans = max(ans, backtrack(new_row, new_col))
             
+            cache[(row, col)] = ans + 1
             return ans + 1
         
         
