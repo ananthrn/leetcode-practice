@@ -37,15 +37,20 @@ class Solution:
             return max(0, highestIndex - lowestIndex + 1)
         
         ans = 0
+        cnt = {}
         
-        for ind in range(1, len(prefSums)):
-            prefSum = prefSums[ind]
-            if goal <= prefSum:
-                remainingSum = prefSum - goal
-                length = binSearchLowestHighest(0, ind - 1, remainingSum)
+#         for ind in range(1, len(prefSums)):
+#             prefSum = prefSums[ind]
+#             if goal <= prefSum:
+#                 remainingSum = prefSum - goal
+#                 length = binSearchLowestHighest(0, ind - 1, remainingSum)
                 
-                ans += length
+#                 ans += length
         
+        for prefSum in prefSums:
+            remSum = prefSum - goal
+            ans += cnt.get(remSum, 0)
+            cnt[prefSum] = cnt.get(prefSum, 0) + 1
         return ans
             
             
