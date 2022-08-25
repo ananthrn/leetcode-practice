@@ -1,17 +1,12 @@
+
+from collections import Counter
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
-        cntRansom = dict()
-        cntMagazine = dict()
-        
-        for char in ransomNote:
-            cntRansom[char] = cntRansom.get(char, 0) + 1
-        
-        for char in magazine:
-            cntMagazine[char] = cntMagazine.get(char, 0) + 1
-        
+        cntRansom = Counter(ransomNote)
+        cntMagazine = Counter(magazine)
         
         for char, cnt in cntRansom.items():
-            if cntMagazine.get(char, 0) < cnt:
+            if cntMagazine[char] < cnt:
                 return False
         
         return True
