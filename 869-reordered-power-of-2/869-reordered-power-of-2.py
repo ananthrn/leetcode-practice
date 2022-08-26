@@ -12,12 +12,5 @@ class Solution:
         stringRep = str(n)
         
         return tuple(sorted(stringRep)) in twoPowers
-        # for val in itertools.permutations(stringRep):
-        #     if val[0] != '0':
-        #         perm = int(''.join(val))
-        #         if perm in twoPowers:
-        #             return True
-        
-        return False
         
             
