@@ -7,7 +7,7 @@ class Solution:
         
         def bfs(r, c):
             print("r, c: ", r, c)
-            grid[r][c] = 0
+            grid[r][c] = "#"
             Q = deque([(r, c)])
             
             while len(Q) > 0:
@@ -21,7 +21,7 @@ class Solution:
                 ):
                     if 0 <= nxt_r < m and 0 <= nxt_c <n:
                         if grid[nxt_r][nxt_c] == "1":
-                            grid[nxt_r][nxt_c] = 0
+                            grid[nxt_r][nxt_c] = "#"
                             Q.appendleft((nxt_r, nxt_c))
             
                         
