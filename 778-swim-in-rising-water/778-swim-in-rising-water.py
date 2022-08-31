@@ -1,53 +1,42 @@
+from sortedcontainers import SortedList
+
+import heapq
+
 class Solution:
     def swimInWater(self, grid: List[List[int]]) -> int:
-        
         n = len(grid)
         
-        def bfs(time: int) -> bool:
-            if grid[0][0] > time:
-                return False
+        def dijkstra() -> int:
+            Q = SortedList([(grid[0][0], 0, 0)])
+            # Q = []
+            # heapq.heappush(Q, (grid[0][0], 0, 0))
+            seen = [n * [False] for _ in range(n)]
             
-            Q = deque([[0, 0]])
-            seen = defaultdict(bool)
-            # print("time: ", time)
             while len(Q) > 0:
-                r, c = Q.popleft()
+                maxTime, tp_r, tp_c = Q.pop(0)
+                # maxTime, tp_r, tp_c = heapq.heappop(Q)
+                if (tp_r, tp_c) == (n-1, n-1):
+                    return maxTime
+                # seen.add((tp_r, tp_c))
                 
-                if seen[(r, c)]:
-                    continue
-                    
-                seen[(r, c)] = True
                 
-                # print("(r, c): ", r, c)
-                # print()
-                if (r, c) == (n-1, n-1):
-                    return True
-                
-                for nxt_r, nxt_c in ((r + 1, c), (r - 1, c), (r, c + 1), (r, c - 1)):
-                    try:
-                        if(0 <= nxt_r < n and 0 <= nxt_c < n):
-                            if(grid[nxt_r][nxt_c] <= time and seen[(nxt_r, nxt_c)] == False):
-                                # seen[(nxt_r, nxt_c)] = True
-                                Q.append((nxt_r, nxt_c))
-                    except IndexError:
-                        pass
+                if not seen[tp_r][tp_c]:
+                    for nxt_r, nxt_c in (
+                        (tp_r, tp_c + 1),
+                        (tp_r, tp_c - 1),
+                        (tp_r + 1, tp_c),
+                        (tp_r - 1, tp_c),
+                    ):
+                        if 0 <= nxt_r < n and 0 <= nxt_c < n:
+                            if not seen[nxt_r][nxt_c]:
+                                nextTime = max(maxTime, grid[nxt_r][nxt_c])
+                                Q.add((nextTime, nxt_r, nxt_c))
+                                # heapq.heappush(Q, (nextTime, nxt_r, nxt_c))
+                                
+                seen[tp_r][tp_c] = True
             
-            return False
+            return -1
         
-        start, end, bestTime = 0, n * n, n * n
-        print("n :", n)
-        while(start <= end):
-            mid = (start + end)//2
-            
-            check = bfs(mid)
-            
-            if check:
-                bestTime = min(bestTime, mid)
-                end = mid - 1
-            else:
-                start = mid + 1
+        ans = dijkstra()
         
-        return bestTime
-        
-        
-            
+        return ans
