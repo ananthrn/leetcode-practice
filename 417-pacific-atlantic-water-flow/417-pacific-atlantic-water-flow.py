@@ -52,7 +52,7 @@ class Solution:
         seenAtlantic = [n * [0] for _ in range(m)]
         
         self.bfs(heights, pacific, seenPacific, 0)
-        print("seen pacific: ", seenPacific)
+        # print("seen pacific: ", seenPacific)
         self.bfs(heights, atlantic, seenAtlantic, 0)
         
         # print("seen pacific and atlantic: ", seen)
