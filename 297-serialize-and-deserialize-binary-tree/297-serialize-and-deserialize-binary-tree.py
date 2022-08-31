@@ -4,7 +4,7 @@
 #         self.val = x
 #         self.left = None
 #         self.right = None
-
+from collections import deque
 class Codec:
     
     
@@ -38,16 +38,15 @@ class Codec:
         :type data: str
         :rtype: TreeNode
         """
-        valList = data.split()
+        valList = deque(data.split())
         ind = 0
         def deserializeHelper() -> TreeNode:
-            nonlocal ind, valList
-            print("ind: ", ind)
+            nonlocal valList
+            # print("ind: ", ind)
             
-            if ind < len(valList):
+            if len(valList) > 0:
                 
-                val = valList[ind]
-                ind += 1
+                val = valList.popleft()
                 if val == "#":
                     return None
                 else:
