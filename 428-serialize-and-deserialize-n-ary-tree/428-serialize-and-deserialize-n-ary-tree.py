@@ -43,7 +43,6 @@ class Codec:
         :rtype: Node
         """
         dataList = deque(data.split())
-        print("GOT TO DESERIALIZE: ")
         def deserializeHelper() -> 'Node':
             nonlocal dataList
             strVal = dataList.popleft()
