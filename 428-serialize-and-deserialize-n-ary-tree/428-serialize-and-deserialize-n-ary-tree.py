@@ -33,7 +33,7 @@ class Codec:
         
         serializeHelper(root)
         
-        print("data: ", data)
+        # print("data: ", data)
         return data
 	
     def deserialize(self, data: str) -> 'Node':
