@@ -16,24 +16,17 @@ class Codec:
         data = ""
         def serializeHelper(rootNode: 'Node') -> None:
             nonlocal data
-            print("BEGIN: ")
-            print("rootNode: ", rootNode)
-            # print("data: ", data)
             if rootNode is None:
                 data += " #"
             else:
                 
                 data += " " + str(rootNode.val)
-                print("rootNode.val: ", rootNode.val)
                 if rootNode.children is not None:
-                    print("children: ", [child.val if child is not None else "None" for child in rootNode.children])
-                    print()
                     numChildren = len(rootNode.children)
                     data += " " + str(numChildren)
                     
-                    if numChildren > 0:
-                        for child in rootNode.children:
-                            serializeHelper(child)
+                    for child in rootNode.children:
+                        serializeHelper(child)
                 else:
                     data += " " + "0"
         
