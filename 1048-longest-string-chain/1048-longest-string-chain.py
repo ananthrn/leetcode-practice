@@ -30,7 +30,7 @@ class Solution:
         
         cache = {}
         
-        
+        @lru_cache
         def backtrack(index):
             if cache.get(index, None):
                 return cache.get(index)
