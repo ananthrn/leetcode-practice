@@ -28,18 +28,24 @@ class Solution:
         # ans = 0
         words = sorted(words, key=lambda x: len(x))
         
-        @cache
+        cache = {}
+        
+        
         def backtrack(index):
+            if cache.get(index, None):
+                return cache.get(index)
+            
             # print("currentWord:", currentWord)
             # print("index: ", index)
             # print("depth: ",depth)
             ans = 0 #max(ans, depth)
-            
+                
             for ind in range(index + 1, len(words)):
                 if self.isPredecessor( words[index], words[ind]):
                     nextAns = backtrack(ind)
                     ans = max(ans, nextAns)
             
+            cache[index] = ans + 1
             return ans + 1
         
         ansAll = max([backtrack(ind) for ind in range(len(words))])
