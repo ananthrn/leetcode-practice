@@ -14,9 +14,9 @@ class Solution:
                 if tp not in dist:
                     dist[tp] = steps
                 
-                for nxtVal, time in adj[tp]:
-                    if nxtVal not in dist:                
-                        Q.add((steps + time, nxtVal))
+                    for nxtVal, time in adj[tp]:
+                        if nxtVal not in dist:                
+                            Q.add((steps + time, nxtVal))
         
                         
             
