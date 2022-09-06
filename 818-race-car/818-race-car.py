@@ -13,12 +13,12 @@ class Solution:
                     return moves
                 
                 if (pos + vel, vel * 2) not in seen:
-                    # seen.add((pos + vel, vel * 2))
+                    seen.add((pos + vel, vel * 2))
                     Q.appendleft((moves + 1, pos + vel, vel * 2))
                     
                 if (pos + vel > target and vel > 0) or (pos + vel < target and vel < 0):
                     if (pos, -vel//abs(vel)) not in seen:
-                        # seen.add((pos, -vel//abs(vel)))
+                        seen.add((pos, -vel//abs(vel)))
                         Q.appendleft((moves + 1, pos, -vel//abs(vel)))
             return -1
         
