@@ -19,10 +19,9 @@ class Solution:
                     p2 = points[j]
                     p3 = points[k]
                     if sameSlope(p1, p2, p3):
-                        print("yes:!")
                         c[tuple(p1 + p2)] +=1
         
-        print("c:, ", c)
+        
         if len(c) == 0:
             return min(2, len(points))
         
