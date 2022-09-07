@@ -20,7 +20,7 @@ class Solution:
         
         
         powers = {exp: getVal(exp) for exp in range(31)}
-        print("powers: ", powers)
+        # print("powers: ", powers)
         return sum(powers.values())
             
             
