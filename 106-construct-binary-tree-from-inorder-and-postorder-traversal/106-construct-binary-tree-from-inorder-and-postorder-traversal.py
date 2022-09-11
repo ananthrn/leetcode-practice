@@ -24,20 +24,11 @@ class Solution:
             rootNode = TreeNode(val=rootVal)
 
             # print("rootVal: ")
-            rootIndex = inorder.index(rootVal)
+            rootIndex = idx_map[rootVal]
             
             # print("rootIndex: ", rootIndex)
             # print()
-            #construct left and right in orders
-#             inorderLeft = inorder[0:rootIndex]
-#             inorderRight = inorder[rootIndex + 1:]
-
-#             postLeftIndex = max([postorder.index(val) for val in inorderLeft]) if len(inorderLeft) > 0 else -1
-#             postLeftIndex = max([postorder.index(val) for val in inorderLeft]) if len(inorderLeft) > 0 else -1 
-#             postorderLeft = postorder[0: postLeftIndex + 1]
-#             postorderRight = postorder[postLeftIndex + 1: -1]
-#             # postorderLeft = [val for val in postorder if val in inorderLeft]
-#             # postorderRight = [val for val in postorder if val in inorderRight]
+            
             
             rootNode.right = helper(rootIndex + 1, inorder_right)
             rootNode.left = helper(inorder_left, rootIndex - 1)
@@ -45,6 +36,7 @@ class Solution:
 
             return rootNode
         
+        idx_map = {val: idx for idx, val in enumerate(inorder)}
         return helper(0, len(inorder) - 1)
         
         
