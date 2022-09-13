@@ -6,27 +6,28 @@ class Solution:
         
         maxLen = 0
         
-        while i < len(input):
-            depth = 0
-            isFile = False
-            fileLen = 0
-            while i < len(input) and input[i] != '\n':
-                if input[i] == '\t':
-                    depth += 1
-                else:
-                    fileLen += 1
-                    if input[i] == '.':
-                        isFile = True
-                i+=1
+        lines = input.split('\n')
+        
+        for line in lines:
             
-            i+=1
+            depth = line.count('\t')
+            stripped = line.lstrip('\t')
+            
+            fileLen = len(stripped)
+            isFile = stripped.count('.') >= 1
             
             depLength[depth] = depLength.get(depth - 1, 0) + 1 + fileLen
-            
-            if isFile == True:
+            print("line: ", line)
+            print("depth: ", depth)
+            print("stripped: ", stripped)
+            print("fileLen: ", fileLen)
+            print("depLength[depth]:", depLength[depth])
+            print()
+            if isFile:
                 maxLen = max(maxLen, depLength[depth] - 1)
         
         return maxLen
+            
                 
                     
                 
