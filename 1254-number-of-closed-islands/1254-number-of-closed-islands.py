@@ -22,15 +22,14 @@ class Solution:
                     if 0 <= nxt_r < m and 0 <= nxt_c < n:
                         if grid[nxt_r][nxt_c] == 0:
                             grid[nxt_r][nxt_c] = 1
-                            # seen.add((nxt_r, nxt_c))
                             Q.appendleft((nxt_r, nxt_c))
             
             return reachedSide == False
         
         count = 0
-        for r in range(m):
-            for c in range(n):
-                if grid[r][c] == 0 and (r,c) not in seen and isClosedIsland(r, c):
+        for r in range(1, m-1):
+            for c in range(1, n-1):
+                if grid[r][c] == 0 and isClosedIsland(r, c):
                     count += 1
         
         return count
