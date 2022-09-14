@@ -16,12 +16,12 @@ class Solution:
                 char = string[char_ind]
                 new_hash = (hashes[i] - ((ord(char) - ord('a') + 26) * BASE)  + MOD) % MOD
                 if new_hash in seen:
-                    print("i, string: ", i, string)
-                    print("hashes[i]: ", hashes[i])
-                    print("char_ind: ", char_ind)
-                    print("char: ", char)
-                    print("new_hash: ", new_hash)
-                    print("BASE: ", BASE)
+                    # print("i, string: ", i, string)
+                    # print("hashes[i]: ", hashes[i])
+                    # print("char_ind: ", char_ind)
+                    # print("char: ", char)
+                    # print("new_hash: ", new_hash)
+                    # print("BASE: ", BASE)
                     return True
                 seen.add(new_hash)
                 
