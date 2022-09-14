@@ -19,11 +19,11 @@ class Solution:
             if root.left is None and root.right is None:
                 currentPath.append(root.val)
                 if root.val == targetSum:
-                    print("here: ")
-                    print("root.val: ", root.val)
-                    print("currentPath: ", currentPath)
+                    # print("here: ")
+                    # print("root.val: ", root.val)
+                    # print("currentPath: ", currentPath)
                     ans.append(list(currentPath))
-                    print("ans: ", ans)
+                    # print("ans: ", ans)
                 currentPath.pop()
             else:
                 currentPath.append(root.val)
