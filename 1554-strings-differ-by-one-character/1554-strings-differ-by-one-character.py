@@ -7,14 +7,14 @@ class Solution:
         
         for i, string in enumerate(dic):
             for char in string:
-                hashes[i] = ((27 * hashes[i])%MOD + (ord(char) - ord('a'))) % MOD
+                hashes[i] = ((27 * hashes[i])%MOD + (ord(char) - ord('a') + 1)) % MOD
         
         seen = set()
         for i, string in enumerate(dic):
             BASE = 1
             for char_ind in range(n - 1, -1, -1):
                 char = string[char_ind]
-                new_hash = (hashes[i] - ((ord(char) - ord('a') + 26) * BASE)  + MOD) % MOD
+                new_hash = (hashes[i] - ((ord(char) - ord('a') + 1) * BASE)  + MOD) % MOD
                 if new_hash in seen:
                     # print("i, string: ", i, string)
                     # print("hashes[i]: ", hashes[i])
