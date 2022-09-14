@@ -7,7 +7,7 @@ class Solution:
         
         for i, string in enumerate(dic):
             for char in string:
-                hashes[i] = ((27 * hashes[i])%MOD + (ord(char) - ord('a') + 1)) % MOD
+                hashes[i] = ((27 * hashes[i])%MOD + (ord(char) - ord('a') +1)) % MOD
         
         seen = set()
         for i, string in enumerate(dic):
