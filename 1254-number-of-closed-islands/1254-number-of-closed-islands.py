@@ -5,7 +5,7 @@ class Solution:
         def isClosedIsland(r, c) -> bool:
             nonlocal seen
             Q = deque([(r, c)])
-            seen.add((r, c))
+            # seen.add((r, c))
             
             reachedSide = False
             while len(Q) > 0:
@@ -20,9 +20,9 @@ class Solution:
                     (tp_r, tp_c - 1),
                 ):
                     if 0 <= nxt_r < m and 0 <= nxt_c < n:
-                        if (nxt_r, nxt_c) not in seen and grid[nxt_r][nxt_c] == 0:
+                        if grid[nxt_r][nxt_c] == 0:
                             grid[nxt_r][nxt_c] = 1
-                            seen.add((nxt_r, nxt_c))
+                            # seen.add((nxt_r, nxt_c))
                             Q.appendleft((nxt_r, nxt_c))
             
             return reachedSide == False
