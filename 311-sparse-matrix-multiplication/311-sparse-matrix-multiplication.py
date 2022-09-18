@@ -47,21 +47,21 @@ class Solution:
         
         vecListToSum = []
         
-        print("mat: ", mat)
-        print("vec: ", vec)
+        # print("mat: ", mat)
+        # print("vec: ", vec)
         
         for ind, scalar in vec.items():
             if ind in mat:
-                print("ind, scalar: ", ind, scalar)
+                # print("ind, scalar: ", ind, scalar)
                 
                 result = self.denseScalarMultiplication(mat[ind], scalar)
-                print("result: ", result)
+                # print("result: ", result)
                 vecListToSum.append(result)
         
-        print("vecListToSum: ", vecListToSum)
+        # print("vecListToSum: ", vecListToSum)
         ans = self.denseAdditionList(vecListToSum)
-        print("denseMatrixVectorMultiplication: ", ans)
-        print()
+        # print("denseMatrixVectorMultiplication: ", ans)
+        # print()
         return ans
         
     def denseMatrixMultiplication(self, mat1: defaultdict, mat2: defaultdict) -> defaultdict:
