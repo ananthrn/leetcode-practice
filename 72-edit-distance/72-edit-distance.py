@@ -24,7 +24,7 @@ class Solution:
                         1 + dp[row][col-1]
                     )
         
-        print("dp: ", dp)
+        # print("dp: ", dp)
         
         return dp[m][n]
         
