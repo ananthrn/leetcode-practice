@@ -23,31 +23,11 @@ class Solution:
         return rep
     
     def denseAddition(self, vec1: Counter, vec2: Counter) -> Counter:
-#         ans = defaultdict(int)
-        
-#         for ind, val in vec1.items():
-#             ans[ind] += val
-        
-#         for ind, val in vec2.items():
-#             ans[ind] += val
         
         return vec1 + vec2
     
     def denseAdditionList(self, vecList: List[Counter]) -> Counter:
-#         ans = defaultdict(int)
-        
-#         print("vecList: ", vecList)
-#         for vec in vecList:
-#             for ind, val in vec.items():
-#                 ans[ind] += val
-        
-#         print("ans: ", ans)
-#         print()
-
         ans = Counter()
-        # for vec in vecList:
-        #     for ind, val in vec.items():
-        #         ans[ind] += val
         
         for vec in vecList:
             ans.update(vec)
@@ -57,13 +37,10 @@ class Solution:
     
     def denseScalarMultiplication(self, vec: Counter, scalar: float) -> Counter:
         ans = Counter()
-        # print("vec: ", vec)
-        # print("Scalar: ", scalar)
+
         for ind, val in vec.items():
             ans[ind] = scalar * val
         
-        # print("ans: ")
-        # print()
         return ans
     
     def denseMatrixVectorMultiplication(self, mat: defaultdict, vec: Counter) -> Counter: 
