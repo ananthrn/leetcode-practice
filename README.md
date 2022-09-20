@@ -1,2 +1,6 @@
 # leetcode-practice
-Collection of LeetCode questions to ace the coding interview! - Created using [LeetHub](https://github.com/QasimWani/LeetHub)
+Collection of my submissions to Leetcode questions usually ranging from Medium to Hard. 
+
+All solutions are either in Python or C++.
+
+Do reach out if you'd like to reuse any of the solutions.
