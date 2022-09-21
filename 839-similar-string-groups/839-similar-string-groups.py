@@ -4,12 +4,6 @@ class Solution:
         return len(diff) == 2 and list(reversed(diff[0])) == diff[1]
     
     def dfs(self, src: str, compNum: int, components: Dict[str, int]):
-        
-        def swap(string, i, j):
-            c = list(string)
-            c[i], c[j] = c[j], c[i]
-            return ''.join(c)
-        
         components[src] = compNum
                 
         for nextStr, nextNum in components.items():
@@ -17,7 +11,7 @@ class Solution:
                 self.dfs(nextStr, compNum, components)
         
     def numSimilarGroups(self, strs: List[str]) -> int:
-        components = dict([(string, 0) for string in strs])
+        components = {string: 0 for string in strs}
         
         compNum = 0
         for string in strs:
