@@ -1,7 +1,7 @@
 class Solution:
     def areAlmostEqual(self, s1: str, s2: str) -> bool:
         diff = [[x, y] for x, y in zip(s1, s2) if x != y]
-        return len(diff) == 2 and diff[0][::-1] == diff[1]
+        return len(diff) == 2 and list(reversed(diff[0])) == diff[1]
     
     def dfs(self, src: str, compNum: int, components: Dict[str, int]):
         
