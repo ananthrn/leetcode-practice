@@ -13,7 +13,7 @@ class TimeMap:
         if key not in self.map:
             return ""
         
-        index = self.map[key].bisect_left((timestamp + 1, "ZZZZZZZZZZZZZZZZZZZZZ")) - 1
+        index = self.map[key].bisect_left((timestamp + 1, "a")) - 1
         if index >= 0 and index < len(self.map[key]):
 
             return self.map[key][index][1]
