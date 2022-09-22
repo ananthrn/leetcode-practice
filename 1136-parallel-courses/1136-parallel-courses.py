@@ -47,7 +47,7 @@ class Solution:
                 if not checkNotCyle:
                     return -1
         
-        print("semester: ", semester)
+        # print("semester: ", semester)
         return max(semester.values())
             
             
