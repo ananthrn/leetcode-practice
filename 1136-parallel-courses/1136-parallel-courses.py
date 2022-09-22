@@ -22,8 +22,8 @@ class Solution:
             seen[src] = 1
             ans = 0
             for v in prereq[src]:
-                print("src, v: ", src, v)
-                print("seen[v]: ", seen[v])
+                # print("src, v: ", src, v)
+                # print("seen[v]: ", seen[v])
                 if seen[v] == 1:
                     # Cycle detected
                     return False
