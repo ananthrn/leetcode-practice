@@ -25,16 +25,8 @@ class Solution:
                     for rightNode in rightNodes:
                         rootNode = TreeNode(
                             val = 0,
-                            left = TreeNode(
-                                leftNode.val,
-                                leftNode.left,
-                                leftNode.right
-                            ),
-                            right = TreeNode(
-                                rightNode.val,
-                                rightNode.left,
-                                rightNode.right
-                            ),
+                            left = leftNode,
+                            right = rightNode,
                         )
                         ans.append(rootNode)
             
