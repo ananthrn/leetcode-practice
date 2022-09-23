@@ -11,8 +11,9 @@ class Solution:
         
         while start <= end:
             mid = (start + end)//2
+            busTrips = sum(mid//t for t in time)
             
-            if getTotalTrips(mid) >= totalTrips:
+            if busTrips >= totalTrips:
                 bestTime = min(bestTime, mid)
                 end = mid - 1
             else:
