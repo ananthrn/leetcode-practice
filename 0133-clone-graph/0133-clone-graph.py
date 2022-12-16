@@ -18,7 +18,7 @@ class Solution:
 
         while len(Q) > 0:
             topNode = Q.pop()
-            print("topNode.val: ", topNode.val)
+            # print("topNode.val: ", topNode.val)
             if topNode.val not in seen:
                 seen.add(topNode.val)
                 nodeMap[topNode.val] = Node(topNode.val, [])
@@ -32,7 +32,7 @@ class Solution:
         
         while len(Q) > 0:
             topNode = Q.pop()
-            print("topNode.val: ", topNode.val)
+            # print("topNode.val: ", topNode.val)
             
             if topNode.val not in seen:
                 seen.add(topNode.val)
