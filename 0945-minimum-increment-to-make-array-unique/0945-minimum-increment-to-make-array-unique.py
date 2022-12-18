@@ -16,7 +16,7 @@ class Solution:
             # print("moves: ", moves)
             # print("ans: ", ans)
             # print()
-            currentMax = max(key, max(currentMax + 1, key) + cnt - 1)
+            currentMax = max(currentMax + 1, key) + cnt - 1
         
         return ans
             
