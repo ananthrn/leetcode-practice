@@ -1,24 +1,14 @@
 class Solution:
     def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
-        poppedIndex = 0
-        pushIndex = 0
+        stack = []
+        popIndex = 0
         
-        n = len(pushed)
+        for elem in pushed:
+            stack.append(elem)
+            
+            while popIndex < len(popped) and stack and stack[-1] == popped[popIndex]:
+                stack.pop()
+                popIndex += 1
         
-        currentStack = []
-        
-        for popElement in popped:
-            if currentStack and currentStack[-1] == popElement:
-                currentStack.pop()
-            else:
-                while pushIndex < n and pushed[pushIndex] != popElement:
-                    currentStack.append(pushed[pushIndex])
-                    pushIndex += 1
-                
-                if pushIndex == n:
-                    return False
-                
-                pushIndex += 1
-        
-        return pushIndex == n
+        return popIndex == len(popped)
             
