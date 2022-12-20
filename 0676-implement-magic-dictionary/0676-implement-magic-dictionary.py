@@ -1,22 +1,26 @@
 class MagicDictionary:
 
     def __init__(self):
-        self.dictionary = []
+        pass
 
     def buildDict(self, dictionary: List[str]) -> None:
-        self.dictionary = dictionary
+        self.words = set(dictionary)
+        self.count = collections.Counter(
+            nei for word in self.words for nei in self._genneigbhors(word)
+        )
 
     def search(self, searchWord: str) -> bool:
-        return any([self.ifOneAway(searchWord, word) for word in self.dictionary])
-    
-    def ifOneAway(self, word1: str, word2: str) -> bool:
-        if len(word1) != len(word2):
-            return False
+        nebs = self._genneigbhors(searchWord)
         
-        mismatches = [1 for (a, b) in zip(word1, word2) if a != b]
-        
-        return len(mismatches) == 1
-
+        return any(
+            [
+                self.count[neb] > 1 or self.count[neb] == 1 and searchWord not in self.words for neb in nebs
+            ]
+        )
+    def _genneigbhors(self, word: str) -> List[str]:
+        return [
+            word[:i] + "*" + word[i+1:] for i in range(len(word))
+        ]
 
 # Your MagicDictionary object will be instantiated and called as such:
 # obj = MagicDictionary()
