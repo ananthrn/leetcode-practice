@@ -1,23 +1,32 @@
 class Solution:
     def maxProduct(self, words: List[str]) -> int:
+        
+        def getBitMask(word: str) -> int:
+            mask = 0
+            char_index = lambda ch: ord(ch) - ord('a')
+            for ch in word:
+                bitSet = 1 << char_index(ch)
+                mask |= bitSet
+            
+            return mask
+        
         n = len(words)
         
-        masks = n * [0]
-        lens = [len(word) for word in words]
+        bitMaskToLength = collections.defaultdict(int)
         
-        char_index = lambda ch: ord(ch) - ord('a')
-        for ind, word in enumerate(words):
-            for ch in word:
-                bit_index = 1 << char_index(ch)
-                masks[ind] |= bit_index
-        
+        for word in words:
+            bitMaskToLength[getBitMask(word)] = max(bitMaskToLength[getBitMask(word)], len(word))
         
         ans = 0
+        for x in bitMaskToLength:
+            for y in bitMaskToLength:
+                if x & y == 0:
+                    ans = max(
+                        ans,
+                        bitMaskToLength[x] * bitMaskToLength[y]
+                    )
         
-        for ind1 in range(n):
-            for ind2 in range(ind1 + 1, n):
-                if masks[ind1] & masks[ind2] == 0:
-                    ans = max(ans, lens[ind1] * lens[ind2])
+        
         
         return ans
                 
