@@ -23,10 +23,10 @@ class Trie:
         for dirName in path:
             currentNode = currentNode.children[dirName]
         
-        print("path: ", path)
-        print("path")
-        print("currentNode: ", currentNode.children)
-        print("currentNode.fileContent: ", currentNode.fileContent)
+        # print("path: ", path)
+        # print("path")
+        # print("currentNode: ", currentNode.children)
+        # print("currentNode.fileContent: ", currentNode.fileContent)
         return path[-1:] if currentNode.fileContent != "" else sorted(currentNode.children.keys())
         
     def getFileContent(self, path: List[str]) -> str:
