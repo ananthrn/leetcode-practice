@@ -16,14 +16,14 @@ class Solution:
         
         workerToBikes = dict()
         # bikeToWorkers = dict()
-        # cache = dict()
-        @cache
+        cache = dict()
+        
         def helper(workerIndex, bikeMask: int) -> int:
             if workerIndex >= n:
                 return 0
             
-            # if bikeMask in cache:
-            #     return cache[bikeMask]
+            if bikeMask in cache:
+                return cache[bikeMask]
             
             ans = 100_000_007
             for bikeIndex in range(m):
@@ -35,7 +35,7 @@ class Solution:
             # print("bikeMask: ", format(bikeMask, 'b'))
             # print("ans: ", ans)
             # print()
-            # cache[bikeMask] = ans
+            cache[bikeMask] = ans
             return ans 
 
         return helper(0, 0)
