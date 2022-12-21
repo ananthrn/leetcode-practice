@@ -9,7 +9,7 @@ class Solution:
             adj[v].append(u)
             
         def dfs(src, color):
-            print("src, color: ", src, color)
+            # print("src, color: ", src, color)
             colors[src] = color
             
             for nxt in adj[src]:
