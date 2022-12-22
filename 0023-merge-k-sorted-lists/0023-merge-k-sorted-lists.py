@@ -13,7 +13,7 @@ class Solution:
         ans = []
         
         
-        sl = SortedList(key = lambda x: -x.val)
+        sl = SortedList(key = lambda x: x.val)
         
         
         for l in lists:
@@ -23,7 +23,7 @@ class Solution:
         ans = []
         
         while len(sl) > 0:
-            topNode = sl.pop()
+            topNode = sl.pop(0)
             print("topNode.val: ", topNode.val)
             ans.append(topNode)
             if topNode.next is not None:
