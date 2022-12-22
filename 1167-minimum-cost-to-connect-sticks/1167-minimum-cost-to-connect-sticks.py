@@ -1,16 +1,17 @@
 from sortedcontainers import SortedList
+
 class Solution:
     def connectSticks(self, sticks: List[int]) -> int:
-        sl = SortedList(sticks)
-        
+        heapq.heapify(sticks)
         ans = 0
-        while len(sl) > 1:
-            val_0 = sl.pop(0)
-            val_1 = sl.pop(0)
+        while len(sticks) >= 2:
+            val_0 = heapq.heappop(sticks)
+            val_1 = heapq.heappop(sticks)
             
             ans += val_0 + val_1
             
-            sl.add(val_0 + val_1)
+            heapq.heappush(sticks, val_0 + val_1)
+        
         
         return ans
         
