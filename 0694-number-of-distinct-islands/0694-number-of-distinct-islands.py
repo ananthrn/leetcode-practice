@@ -42,7 +42,7 @@ class Solution:
                 
                 pathSignature.append("0")
                     
-            return pathSignature
+            return "".join(pathSignature)
         
             
         m, n = len(grid), len(grid[0])
@@ -54,7 +54,7 @@ class Solution:
             for c in range(n):
                 if grid[r][c] == 1 and (r, c) not in seen:
                     island = bfs((r, c))
-                    islands.add(tuple(island))
+                    islands.add(island)
         
         print("islands: ", islands)
         return len(islands)
