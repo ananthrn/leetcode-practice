@@ -20,7 +20,7 @@ class Solution:
         def bfs(src):
             Q = collections.deque([src])
             island = list()
-            
+            pathSignature = []
             while Q:
                 tp_r, tp_c = Q.pop()
                 
@@ -29,18 +29,20 @@ class Solution:
                 if (tp_r, tp_c) not in seen:
                     seen.add((tp_r, tp_c))
                     
-                    for (nxt_r, nxt_c) in (
-                        (tp_r, tp_c + 1),
-                        (tp_r, tp_c - 1),
-                        (tp_r + 1, tp_c),
-                        (tp_r - 1, tp_c),
+                    for (nxt_r, nxt_c, direction) in (
+                        (tp_r, tp_c + 1, "R"),
+                        (tp_r, tp_c - 1, "L"),
+                        (tp_r + 1, tp_c, "D"),
+                        (tp_r - 1, tp_c, "U"),
                     ):
                         if 0<= nxt_r < m and 0 <= nxt_c < n:
                             if grid[nxt_r][nxt_c] == 1 and (nxt_r, nxt_c) not in seen:
                                 Q.appendleft((nxt_r, nxt_c))
+                                pathSignature.append(direction)
+                
+                pathSignature.append("0")
                     
-                    
-            return sorted(island)
+            return pathSignature
         
             
         m, n = len(grid), len(grid[0])
