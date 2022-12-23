@@ -12,7 +12,7 @@ class Solution:
         
         ans = []
         
-        for diagNum, elems in diagNumToElements.items():
+        for diagNum, elems in sorted(diagNumToElements.items()):
             if diagNum%2 == 0:
                 ans += elems[::-1]
             else:
