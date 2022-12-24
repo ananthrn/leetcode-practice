@@ -9,18 +9,21 @@ class Solution:
         workerBikePairs = sorted([(distance(worker, bike), workerIndex, bikeIndex) for (workerIndex, worker) in enumerate(workers) for (bikeIndex, bike) in enumerate(bikes)])
                 
         
-        workerToBikes = dict()
-        bikeToWorkers = dict()
+        workerToBikes = len(workers) * [None]
+        bikeToWorkers = 0 
         
         totalDist = 0
+        
+        workersAssigned = 0
         for dist, workerIndex, bikeIndex in workerBikePairs:
-            if len(workerToBikes) == len(workers):
-                return [workerToBikes[ind] for ind in range(len(workers))]
+            if workersAssigned == len(workers):
+                return workerToBikes
             
-            if workerIndex not in workerToBikes and bikeIndex not in bikeToWorkers:
+            if workerToBikes[workerIndex] is None and (bikeToWorkers & (1<< bikeIndex)) == 0:
                 workerToBikes[workerIndex] = bikeIndex
-                bikeToWorkers[bikeIndex] = workerIndex
+                bikeToWorkers |= 1 << bikeIndex
                 totalDist += 1
+                workersAssigned += 1
             
         
         return [workerToBikes[ind] for ind in range(len(workers))]
