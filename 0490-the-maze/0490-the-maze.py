@@ -26,10 +26,8 @@ class Solution:
         seen = set()
         
         Q.append((0, start_r, start_c))
-        # seen.add((start_r, start_c))
         
         while len(Q) > 0:
-            print("steps, r, c:", Q[-1])
             steps, r, c = Q.pop()
             
             if (r, c) == tuple(destination):
@@ -39,9 +37,7 @@ class Solution:
                 seen.add((r, c))
                 for direction in dirMap:
                     nxt_r, nxt_c = getNextPos(r, c, direction)
-                    print("direction: ", direction)
-                    print("nxt_r, nxt_c: ", nxt_r, nxt_c)
-                    print()
+                    
                     if 0 <= nxt_r < m and 0 <= nxt_c < n and (nxt_r, nxt_c) not in seen:
                         Q.appendleft((steps + 1, nxt_r, nxt_c))
         
