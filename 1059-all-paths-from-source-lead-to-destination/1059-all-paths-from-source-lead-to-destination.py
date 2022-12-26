@@ -8,7 +8,6 @@ class Solution:
         
         for u, v in edges:
             adj[u].append(v)
-            # adj[v].append(u)
          
         def getDestinations(src: int) -> bool:
             # also check for cycles:
@@ -26,6 +25,7 @@ class Solution:
                     return False
                 elif seen[nxt] == 0:
                     check = getDestinations(nxt)
+                    # next node had a cycle
                     if not check:
                         return False
             
@@ -37,6 +37,7 @@ class Solution:
         
         print("check: ", check)
         print("destinations: ", destinations)
+        #no cycles and only one destination
         return check and destinations == [destination]
         
                 
