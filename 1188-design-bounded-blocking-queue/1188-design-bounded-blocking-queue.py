@@ -10,8 +10,8 @@ class BoundedBlockingQueue(object):
 
     def enqueue(self, element: int) -> None:
         # self.pushing.acquire()
-        while len(self.queue) == self.capacity:
-            time.sleep(.1)
+        # while len(self.queue) == self.capacity:
+        #     time.sleep(.1)
         
         self.lock.acquire()
         self.queue.append(element)
