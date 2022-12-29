@@ -19,10 +19,10 @@ class Solution:
         best = m 
         
         rowsToCheck = list(range(m))
-        
+        calls = 0
         while start <= end:
             mid = (start + end)//2
-            
+            calls += len(rowsToCheck)
             newRowsToCheck = self.getRows(mid, rowsToCheck, binaryMatrix)
             
             if len(newRowsToCheck) > 0:
@@ -31,6 +31,6 @@ class Solution:
                 rowsToCheck = newRowsToCheck
             else:
                 start = mid + 1
-        
+        print("calls: ", calls)
         return best if best < m else -1
         
