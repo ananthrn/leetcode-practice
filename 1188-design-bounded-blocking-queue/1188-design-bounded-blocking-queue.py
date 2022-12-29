@@ -9,23 +9,22 @@ class BoundedBlockingQueue(object):
         self.queue = collections.deque()
 
     def enqueue(self, element: int) -> None:
-        # self.pushing.acquire()
-        # while len(self.queue) == self.capacity:
-        #     time.sleep(.1)
-        
+        self.pushing.acquire()
         self.lock.acquire()
+        
         self.queue.append(element)
+        
         self.lock.release()
-        # self.pulling.release()
+        self.pulling.release()
         
     def dequeue(self) -> int:
-        # self.pulling.acquire()
-        while len(self.queue) == 0:
-            time.sleep(.1)
+        self.pulling.acquire()
         self.lock.acquire()
+        
         val = self.queue.popleft()
+        
         self.lock.release()
-        # self.pushing.release()
+        self.pushing.release()
         
         return val
     
