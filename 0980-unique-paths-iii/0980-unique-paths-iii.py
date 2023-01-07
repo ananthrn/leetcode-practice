@@ -9,23 +9,8 @@ class Solution:
         
         def markVisited(r, c, completedMask) -> int:
             index = r * n + c
-            
             newMask = completedMask | (1 << index)
-            # print("r, c: ", r, c)
-            # print("index: ", index)
-            # print("completedMask: ", completedMask)
-            # print("newMask: ", newMask)
             return newMask
-        
-        def getOnes(mask) -> int:
-            ones = 0
-            while mask > 0:
-                if mask %2  == 1:
-                    ones += 1
-                mask /= 2
-            return ones
-        # def markNotVisited(r, c, completedMask) -> int:
-        #     newMask = 
         
         @cache
         def helper(r, c, completedMask)->int:
