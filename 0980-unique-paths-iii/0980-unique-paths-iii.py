@@ -18,12 +18,12 @@ class Solution:
             cnt = collections.Counter(binRep[2:])
             numOnes = cnt['1']
             
-            print("r, c:", r, c)
-            print("completedMask: ", completedMask)
-            print("binRep: ", binRep)
-            print("numOnes", numOnes)
-            print("numOpenPositions: ", numOpenPositions)
-            print()
+            # print("r, c:", r, c)
+            # print("completedMask: ", completedMask)
+            # print("binRep: ", binRep)
+            # print("numOnes", numOnes)
+            # print("numOpenPositions: ", numOpenPositions)
+            # print()
             if grid[r][c] == 2:
                 if numOnes == numOpenPositions:
                     return 1
@@ -44,10 +44,10 @@ class Solution:
                     # print()
                     if not checkVisited(nxt_r, nxt_c, completedMask) and grid[nxt_r][nxt_c] != -1:
                         newMask = markVisited(nxt_r, nxt_c, completedMask)
-                        print("nxt_r, nxt_c: ", nxt_r, nxt_c)
-                        print("completedMask: ", completedMask)
-                        print("newMask: ", newMask)
-                        print()
+                        # print("nxt_r, nxt_c: ", nxt_r, nxt_c)
+                        # print("completedMask: ", completedMask)
+                        # print("newMask: ", newMask)
+                        # print()
                         ans += helper(nxt_r, nxt_c, newMask)
             
             return ans
