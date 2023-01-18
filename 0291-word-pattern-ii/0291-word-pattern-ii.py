@@ -1,7 +1,7 @@
 class Solution:
     def wordPatternMatch(self, pattern: str, s: str) -> bool:
         def helper(pattern, string, forward={}, backward={}):
-            if len(pattern) == 0 and len(string) == 0:
+            if len(pattern) == len(string) == 0:
                 return True
             
             if (len(pattern) == 0) != (len(string) == 0):
