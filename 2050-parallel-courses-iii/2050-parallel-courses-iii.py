@@ -28,7 +28,7 @@ class Solution:
             if months[course] is None:
                 helper(course)
         
-        print("months: ", months)
+        # print("months: ", months)
         return max(months, default=0)
             
         
