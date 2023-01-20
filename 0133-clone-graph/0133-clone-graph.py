@@ -11,39 +11,19 @@ class Solution:
         
         if node is None:
             return None
-        nodeMap = dict()
-
-        Q = collections.deque([node])
-        seen = set()
-
-        while len(Q) > 0:
-            topNode = Q.pop()
-            # print("topNode.val: ", topNode.val)
-            if topNode.val not in seen:
-                seen.add(topNode.val)
-                nodeMap[topNode.val] = Node(topNode.val, [])
-
-                for neighbor in topNode.neighbors:
-                    if neighbor.val not in seen:
-                        Q.appendleft(neighbor)
         
-        seen = set()
-        Q = collections.deque([node])
+        Q = collections.deque({node})
+        nodeMap = dict({node: Node(node.val, [])})
         
-        while len(Q) > 0:
-            topNode = Q.pop()
-            # print("topNode.val: ", topNode.val)
+        while Q:
+            tp = Q.pop()
             
-            if topNode.val not in seen:
-                seen.add(topNode.val)
-                nodeMap[topNode.val].neighbors = [nodeMap[neb.val] for neb in topNode.neighbors]
-                
-                for neighbor in topNode.neighbors:
-                    if neighbor.val not in seen:
-                        Q.appendleft(neighbor)
+            for nxtNode in tp.neighbors:
+                if nxtNode not in nodeMap:
+                    nodeMap[nxtNode] = Node(nxtNode.val, [])
+                    Q.appendleft(nxtNode)
+                nodeMap[tp].neighbors.append(nodeMap[nxtNode])
         
         
+        return nodeMap[node]
         
-        # def helper(srcNode: 'Node') -> None:
-        #     nodeMap[]
-        return nodeMap[node.val] 
