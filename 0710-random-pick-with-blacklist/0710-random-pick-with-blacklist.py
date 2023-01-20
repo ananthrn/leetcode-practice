@@ -1,28 +1,19 @@
 class Solution:
 
     def __init__(self, n: int, blacklist: List[int]):
-        self.mapDict = {}
-        self.blacklist = set(blacklist)
-        self.n = n
+        self.whiteListIndex = n - len(blacklist) - 1
         
-        currentIndex = n - len(blacklist)
+        rightSideCandidates = [val for val in range(self.whiteListIndex + 1, n) if val not in blacklist]
+        self.map = {}
         
-        for val in blacklist:
-            if val < n - len(blacklist):
-                while currentIndex < n and currentIndex in self.blacklist:
-                    currentIndex += 1
-                if currentIndex < n:
-                    self.mapDict[val] = currentIndex
-                    currentIndex += 1
+        for blackVal in blacklist:
+            if blackVal <= self.whiteListIndex:
+                self.map[blackVal] = rightSideCandidates.pop()
         
-        print("self.mapDict: ", self.mapDict)
-        
-        
-
     def pick(self) -> int:
-        val = random.randint(0, self.n - len(self.blacklist) - 1)
+        val = random.randint(0, self.whiteListIndex)
         
-        return self.mapDict.get(val, val)
+        return self.map.get(val, val)
         
 
 
