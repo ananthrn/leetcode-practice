@@ -33,8 +33,6 @@ class Solution:
         for email, accountNum in emailToAccountNum.items():
             accountNumToEmails[dsu.find(accountNum)].append(email)
         
-        ans = []
-        
         ans = [
             [accounts[accountNum][0]] + sorted(emails) for accountNum, emails in accountNumToEmails.items()
         ]
