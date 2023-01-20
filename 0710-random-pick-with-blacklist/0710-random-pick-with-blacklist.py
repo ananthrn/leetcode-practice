@@ -3,7 +3,8 @@ class Solution:
     def __init__(self, n: int, blacklist: List[int]):
         self.whiteListIndex = n - len(blacklist) - 1
         
-        rightSideCandidates = [val for val in range(self.whiteListIndex + 1, n) if val not in blacklist]
+        blackSet = set(blacklist)
+        rightSideCandidates = [val for val in range(self.whiteListIndex + 1, n) if val not in blackSet]
         self.map = {}
         
         for blackVal in blacklist:
