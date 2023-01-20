@@ -34,8 +34,10 @@ class Solution:
             accountNumToEmails[dsu.find(accountNum)].append(email)
         
         ans = []
-        for accountNum, emails in accountNumToEmails.items():
-            ans.append([accounts[accountNum][0]] + sorted(emails))
+        
+        ans = [
+            [accounts[accountNum][0]] + sorted(emails) for accountNum, emails in accountNumToEmails.items()
+        ]
         
         return ans
         
