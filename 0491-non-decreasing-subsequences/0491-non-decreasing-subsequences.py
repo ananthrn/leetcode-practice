@@ -1,5 +1,6 @@
 class Solution:
     def findSubsequences(self, nums: List[int]) -> List[List[int]]:
+        @cache
         def helper(index: int) -> List[int]:
             ans = [[nums[index]]]
             
