@@ -6,14 +6,21 @@ class Solution:
         vals = len(nums) * [None]
         
         k = k % len(nums)
+#         nums = []
         
-        for ind in range(len(nums)):
-            vals[ind] = nums[(ind - k + len(nums))% len(nums)]
-        for ind in range(len(nums)):
-            nums[ind] = vals[ind]
+#         nums = list(nums[-k:] + nums[:len(nums) - k])
+        # nums = []
+        # for ind in range(len(nums)):
+        #     vals[ind] = nums[(ind - k + len(nums))% len(nums)]
+        # for ind in range(len(nums)):
+        #     nums[ind] = vals[ind]
             
-        print("vals: ", vals)
+        # print("vals: ", vals)
         # nums = vals
+        dummyList = list(nums[-k:] + nums[:len(nums) - k])
+        print("dummyList:", dummyList)
+        for ind in range(len(nums)):
+            nums[ind] = dummyList[ind]
         
         
         
