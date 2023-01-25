@@ -6,4 +6,4 @@ class Solution:
         
         bin_complement = "0b" + "".join(new_val)
         
-        return int(bin_complement, 2)
+        return int("".join(new_val), 2)
