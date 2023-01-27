@@ -14,6 +14,6 @@ class Solution:
                 
         cnt = Counter(words)
         
-        sortedWords = sorted(cnt.keys(), key=functools.cmp_to_key(compare))
+        sortedWords = sorted(cnt.keys(), key=lambda word: (-cnt[word], word))
         
         return sortedWords[:k]
