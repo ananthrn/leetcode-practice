@@ -18,9 +18,9 @@ class Solution:
                 nextIndex = bisect.bisect_right(days, days[index] + dayPass - 1, index+1)
                 mincost = min(mincost, cost + helper(nextIndex))
             
-            print("index:", index)
-            print("mincost: ", mincost)
-            print()
+#             print("index:", index)
+#             print("mincost: ", mincost)
+#             print()
             return mincost
         
         
