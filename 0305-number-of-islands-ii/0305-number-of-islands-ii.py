@@ -50,9 +50,9 @@ class Solution:
                         if (nxt_r, nxt_c) in grid:
                             delta = UF.union(posToIndex(r, c), posToIndex(nxt_r, nxt_c))
                             islandDelta -= delta
-                            print("r, c: ", r, c)
-                            print("nxt_r, nxt_c: ", nxt_r, nxt_c)
-                            print("delta: ", delta)
+                            # print("r, c: ", r, c)
+                            # print("nxt_r, nxt_c: ", nxt_r, nxt_c)
+                            # print("delta: ", delta)
                 
                 islandChanges.append(islandDelta)
         
