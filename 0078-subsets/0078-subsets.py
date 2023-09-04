@@ -1,6 +1,7 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         ans = []
+        @cache
         def backtrack(index: int):
             if index >= len(nums):
                 return [[]]
