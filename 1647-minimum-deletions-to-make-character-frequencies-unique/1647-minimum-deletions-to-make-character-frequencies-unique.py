@@ -5,27 +5,27 @@ class Solution:
         
         print(cntCnt.items())
         
-        freeFrequencies = set([freq for freq in range(max(cntCnt.keys()))])
+        freeVals = set([freq for freq in range(max(cntCnt.keys()))])
         
         for val in cntCnt.keys():
-            if val in freeFrequencies:
-                freeFrequencies.remove(val)
+            if val in freeVals:
+                freeVals.remove(val)
         
-        maxFreq = max(freeFrequencies) 
+        maxFreeVal = max(freeVals) 
         
         ans = 0
         
         print("cntCnt: ", cntCnt)
-        print("freeFrequencies: ", freeFrequencies)
+        print("freeVals: ", freeVals)
         for val in sorted(cntCnt.keys(), reverse=True):
             currentFreq = cntCnt[val]
             if currentFreq > 1:
                 for nxt in range(0, currentFreq - 1):
-                    maxFreq = max(min(maxFreq, val - 1), 0)
-                    while maxFreq > 0 and maxFreq not in freeFrequencies:
-                        maxFreq -=1
-                    if maxFreq > 0:
-                        freeFrequencies.remove(maxFreq)
-                    ans += val - maxFreq
+                    maxFreeVal = max(min(maxFreeVal, val - 1), 0)
+                    while maxFreeVal > 0 and maxFreeVal not in freeVals:
+                        maxFreeVal -=1
+                    if maxFreeVal > 0:
+                        freeVals.remove(maxFreeVal)
+                    ans += val - maxFreeVal
                 
         return ans 
