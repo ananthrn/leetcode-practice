@@ -5,8 +5,6 @@ class Solution:
         while start <= end:
             mid = (start + end)//2
             
-            print("start, mid, end: ", start, mid, end)
-            print("nums[start], nums[mid], nums[end]: ", nums[start], nums[mid], nums[end])
             if nums[mid] == target:
                 return mid
             
