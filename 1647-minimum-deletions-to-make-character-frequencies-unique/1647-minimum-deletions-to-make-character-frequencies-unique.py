@@ -1,38 +1,31 @@
-from collections import Counter
-from sortedcontainers import SortedList
 class Solution:
     def minDeletions(self, s: str) -> int:
-        currentEmpty = 0
+        cnt = Counter(s)
+        cntCnt = Counter(cnt.values())
         
-        counter = Counter(s)
+        print(cntCnt.items())
         
-        cntList = [counter[c] for c in counter]
+        freeFrequencies = set([freq for freq in range(max(cntCnt.keys()))])
         
-        cntMap = defaultdict(int)
+        for val in cntCnt.keys():
+            if val in freeFrequencies:
+                freeFrequencies.remove(val)
+        
+        maxFreq = max(freeFrequencies) 
         
         ans = 0
         
-        unseenFrequencies = SortedList(list(range(0, max(cntList) + 1)))
-        for cntVal in cntList:
-            unseenFrequencies.discard(cntVal)
-        
-        # print("unseenFrequencies: ", unseenFrequencies)
-        for cntVal in cntList:
-            if cntMap[cntVal] > 0:
-                currentGapIndex = unseenFrequencies.bisect_left(cntVal) - 1
-                # print("cntVal: ", cntVal)
-                # print("currentGapIndex: ", currentGapIndex)
-                currentGap = unseenFrequencies[currentGapIndex]
-                ans += (cntVal - currentGap)
-                cntMap[currentGap] = 1
-                if currentGap > 0:
-                    unseenFrequencies.remove(currentGap)
-            else:
-                cntMap[cntVal] = 1
-            
-        
-        return ans
+        print("cntCnt: ", cntCnt)
+        print("freeFrequencies: ", freeFrequencies)
+        for val in sorted(cntCnt.keys(), reverse=True):
+            currentFreq = cntCnt[val]
+            if currentFreq > 1:
+                for nxt in range(0, currentFreq - 1):
+                    maxFreq = max(min(maxFreq, val - 1), 0)
+                    while maxFreq > 0 and maxFreq not in freeFrequencies:
+                        maxFreq -=1
+                    if maxFreq > 0:
+                        freeFrequencies.remove(maxFreq)
+                    ans += val - maxFreq
                 
-                
-        
-        
+        return ans 
