@@ -1,48 +1,34 @@
-from collections import defaultdict, deque
-
 class Solution:
-    
     def maximumDetonation(self, bombs: List[List[int]]) -> int:
-        n = len(bombs)
+        adj = collections.defaultdict(list)
         
-        seen = n * [False]
         
-        def checkDetonate(bomb1, bomb2):
-            x1, y1, r1 = bomb1
-            x2, y2, r2 = bomb2
-            
-            return (x1 - x2)**2 + (y1 - y2)**2 <= r1**2
-        
-        adj = defaultdict(list)
+        def euclideanDistance(bomb1,  bomb2):
+            return (bomb1[0] - bomb2[0]) ** 2 + (bomb1[1] - bomb2[1]) ** 2
         
         for ind1, bomb1 in enumerate(bombs):
             for ind2, bomb2 in enumerate(bombs):
-                if checkDetonate(bomb1, bomb2):
+                if euclideanDistance(bomb1, bomb2) <= (bomb1[2]) ** 2:
                     adj[ind1].append(ind2)
         
         
         
-        def bfs(src: int) -> int:
-            seen = set([src])
-            Q = deque([src])
+        def bfs(sourceIndex: int) -> int:
+            seen = set()
+            Q = collections.deque([sourceIndex])
+            seen.add(sourceIndex)
             
-            ans = 1 
+            val = 0
             
-            while len(Q) > 0:
+            while Q:    
                 tp = Q.pop()
-                
+                val += 1
                 for nxt in adj[tp]:
                     if nxt not in seen:
                         seen.add(nxt)
                         Q.appendleft(nxt)
-                        ans += 1
-            
-            return ans
+                        
+            return val
         
-        
-        
-        return max([ bfs(src) for src in range(len(bombs))])
-            
-        
-        
-        
+        return max(bfs(sourceIndex) for sourceIndex in range(len(bombs)))
+    
