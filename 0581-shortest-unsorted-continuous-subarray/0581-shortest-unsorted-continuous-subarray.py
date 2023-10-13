@@ -40,6 +40,6 @@ class Solution:
             if j > 0 and suffixMin[j] < prefixMax[j - 1]:
                 break
         
-        print("maxLeft, minRight", maxLeft, minRight )
+        # print("maxLeft, minRight", maxLeft, minRight )
         return max(0, minRight - maxLeft + 1)
         
