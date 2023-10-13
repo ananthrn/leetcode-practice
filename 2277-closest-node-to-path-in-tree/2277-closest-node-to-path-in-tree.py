@@ -23,7 +23,7 @@ class Solution:
         
         _ = [bfs(src) for src in range(n)]
         
-        print("dist: ", dist)
+        # print("dist: ", dist)
         ans = []
         for start, end, node in query:
             shortestDistance = min(list(range(n)), key=lambda x: dist[start][x] + dist[x][end] + dist[x][node])
