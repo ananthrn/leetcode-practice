@@ -33,11 +33,11 @@ class Solution:
                 else:
                     break
         
-        print("minLeft: ", minLeft)
-        print("minRight: ", minRight)
+#         print("minLeft: ", minLeft)
+#         print("minRight: ", minRight)
         
-        print("maxLeft: ", maxLeft)
-        print("maxRight: ", maxRight)
+#         print("maxLeft: ", maxLeft)
+#         print("maxRight: ", maxRight)
         
         ans = 0 
         
@@ -48,12 +48,12 @@ class Solution:
             thisAnswerPositive = nums[ind] * maxWindow
             thisAnswerNegative = nums[ind] * minWindow
             
-            print("ind, nums[ind]: ", ind, nums[ind])
-            print("maxWindow: ", maxWindow)
-            print("minWindow: ", minWindow)
-            print("thisAnswerPositive: ", thisAnswerPositive)
-            print("thisAnswerNegative: ", thisAnswerNegative)
-            print()
+            # print("ind, nums[ind]: ", ind, nums[ind])
+            # print("maxWindow: ", maxWindow)
+            # print("minWindow: ", minWindow)
+            # print("thisAnswerPositive: ", thisAnswerPositive)
+            # print("thisAnswerNegative: ", thisAnswerNegative)
+            # print()
             ans += nums[ind] * ( maxWindow -  minWindow)
         
         
