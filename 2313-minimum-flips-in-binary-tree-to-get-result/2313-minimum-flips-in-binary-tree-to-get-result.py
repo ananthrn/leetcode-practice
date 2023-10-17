@@ -18,6 +18,7 @@ class Solution:
             # print("node.val", node.val)
             if node.left is not None and node.right is not None:
                 minFlips = 1000000
+                
                 for leftVal in [True, False]:
                     for rightVal in [True, False]:
                         if opMap[node.val](leftVal, rightVal) == result:
