@@ -1,34 +1,30 @@
 class Solution:
     def minimumTime(self, n: int, relations: List[List[int]], time: List[int]) -> int:
-        def helper(src: int) -> int:
-            if months[src] is not None:
-                return months[src]
-            
-            
-            prevMonthsNeeded = 0
-            
-            for prereq in adj[src]:
-                prevMonths = helper(prereq)
-                prevMonthsNeeded = max(prevMonthsNeeded, prevMonths)
-            
-            months[src] = time[src] + prevMonthsNeeded
-            print("src: ", src)
-            print("months[src]: ", months[src])
-            print("prevMonthsNeeded: ", prevMonthsNeeded)
-            return months[src]
-            
-        
-        months = n * [None]
+        inDegree = n * [0]
         adj = collections.defaultdict(list)
         
-        for prereq, nxtCourse in relations:
-            adj[nxtCourse - 1].append(prereq - 1)
+        for u, v in relations:
+            adj[u - 1].append(v - 1)
+            inDegree[v-1] +=1
         
-        for course in range(n):
-            if months[course] is None:
-                helper(course)
+        totalTime = n * [0]
         
-        # print("months: ", months)
-        return max(months, default=0)
+        Q = collections.deque()
+        for node in range(n):
+            if inDegree[node] == 0:
+                totalTime[node] = time[node]
+                Q.appendleft(node)
+        
+        while Q:
+            tp = Q.pop()
             
+            for nxt in adj[tp]:
+                totalTime[nxt] = max(totalTime[nxt], time[nxt] + totalTime[tp])
+                inDegree[nxt] -=1
+                
+                if inDegree[nxt] == 0:
+                    Q.appendleft(nxt)
+        
+        return max(totalTime)
+        
         
