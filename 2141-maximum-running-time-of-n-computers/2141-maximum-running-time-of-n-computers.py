@@ -78,12 +78,12 @@ class Solution:
                 # print("j: ", j)
                 # print("")
                 extraPowerNeeded = j * (batteryTopN[j] - batteryTopN[j-1])
-                print("j: ", j)
-                print("batteryTopN[j], batteryTopN[j- 1], diff: ",batteryTopN[j], batteryTopN[j- 1], (batteryTopN[j] - batteryTopN[j-1]))
-                print("extraPower:", extraPower)
-                print("extraPowerNeeded: ", extraPowerNeeded)
+#                 print("j: ", j)
+#                 print("batteryTopN[j], batteryTopN[j- 1], diff: ",batteryTopN[j], batteryTopN[j- 1], (batteryTopN[j] - batteryTopN[j-1]))
+#                 print("extraPower:", extraPower)
+#                 print("extraPowerNeeded: ", extraPowerNeeded)
                 
-                print()
+#                 print()
                 if extraPowerNeeded > extraPower:
                     return batteryTopN[j-1] + extraPower//j
                 else:
