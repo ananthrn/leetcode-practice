@@ -70,10 +70,10 @@ class Solution:
             batteryTopN = sorted(batterySorted[-n:])
             extraPower = sum(batterySorted[:-n])
             
-            print("batteryTopN: ", batteryTopN)
-            print("otherBatteries: ", batterySorted[:n])
-            print("totalExtraPower: ", extraPower)
-            print()
+            # print("batteryTopN: ", batteryTopN)
+            # print("otherBatteries: ", batterySorted[:n])
+            # print("totalExtraPower: ", extraPower)
+            # print()
             for j in range(1, n):
                 # print("j: ", j)
                 # print("")
@@ -94,6 +94,5 @@ class Solution:
              
             
         betterVal = getExtraPowerRunTime(n, batteries)
-        print("betterVal: ", betterVal)
         return betterVal
         
