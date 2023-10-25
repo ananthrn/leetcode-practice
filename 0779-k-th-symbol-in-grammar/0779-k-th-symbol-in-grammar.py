@@ -1,6 +1,7 @@
 class Solution:
     def kthGrammar(self, n: int, k: int) -> int:
         
+        @cache
         def helper(n: int, k :int) -> int:
             # print("n, k: ", n, k)
             # assert 0 <= k < 2**n -1
