@@ -18,8 +18,8 @@ class Solution:
             while heap and heap[0][0] < ind:
                 heapq.heappop(heap)
                 
-            if len(heap) == 0 and ind >= n:
-                return totalApples
+            # if len(heap) == 0 and ind >= n:
+            #     return totalApples
             if len(heap) > 0:
                 expiryDay, numApples = heapq.heappop(heap)
                 # print("expiryDay, numApples: ", expiryDay, numApples)
