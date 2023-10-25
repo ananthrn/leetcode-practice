@@ -27,13 +27,13 @@ class Solution:
             else:
                 rightSum = sumOfAP(elementsRight, val - 1, val - 1 - (elementsRight - 1))
             
-            print("n, index, maxSum: ", n, index, maxSum)
-            print("val: ", val)
-            print("leftSum: ", leftSum)
-            print("rightSum: ", rightSum)
-            print("totalSum: ", leftSum + rightSum)
-            print("check?: ", leftSum + rightSum <= maxSum)
-            print()
+            # print("n, index, maxSum: ", n, index, maxSum)
+            # print("val: ", val)
+            # print("leftSum: ", leftSum)
+            # print("rightSum: ", rightSum)
+            # print("totalSum: ", leftSum + rightSum)
+            # print("check?: ", leftSum + rightSum <= maxSum)
+            # print()
             
             return leftSum + rightSum <= maxSum
         
