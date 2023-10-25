@@ -23,11 +23,11 @@ class Solution:
             if len(heap) > 0:
                 expiryDay, numApples = heapq.heappop(heap)
                 # print("expiryDay, numApples: ", expiryDay, numApples)
-                # if expiryDay > ind:
-                totalApples += 1
+                if expiryDay >= ind:
+                    totalApples += 1
 
-                if numApples > 1:
-                    heapq.heappush(heap, ( expiryDay, numApples - 1))
+                    if numApples > 1:
+                        heapq.heappush(heap, ( expiryDay, numApples - 1))
                     
                     
             # print("ind: ", ind)
