@@ -6,15 +6,16 @@ class Solution:
         def helper(rootVal: int) -> int:
             ans = 1
             
-            for val in arr:
-                if rootVal % val == 0 and (rootVal//val) in arr:
+            for val in arrSet:
+                if rootVal % val == 0 and (rootVal//val) in arrSet:
                     ans = (ans + helper(val) * helper(rootVal//val))%MOD
             
             return ans
         
+        arrSet = set(arr)
         totalAns = 0
         
-        for val in arr:
+        for val in arrSet:
             totalAns  = (totalAns + helper(val))%MOD
         
         return totalAns
