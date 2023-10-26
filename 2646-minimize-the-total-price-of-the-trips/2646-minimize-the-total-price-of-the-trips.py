@@ -64,9 +64,9 @@ class Solution:
         
         for src, dest in trips:
             bfsCount =  bfsCounter(src, dest)
-            print("src, dest:" , src, dest)
-            print("bfsCount: ", bfsCount)
-            print()
+            # print("src, dest:" , src, dest)
+            # print("bfsCount: ", bfsCount)
+            # print()
             
             totalCount += bfsCount
             
