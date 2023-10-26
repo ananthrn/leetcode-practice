@@ -3,19 +3,19 @@ class Solution:
         MOD = 1_000_000_007
         
         @cache
-        def helper(rootVal: int):
+        def helper(rootVal: int) -> int:
             ans = 1
-            for val in valSet:
-                if val < rootVal and rootVal %val ==0 and (rootVal//val) in valSet:
-                    ans = (ans +  (helper(val) * helper(rootVal//val))%MOD)%MOD
-                    
+            
+            for val in arr:
+                if rootVal % val == 0 and (rootVal//val) in arr:
+                    ans = (ans + helper(val) * helper(rootVal//val))%MOD
+            
             return ans
-                
-        valSet = set(arr)
         
-        numTrees = 0
+        totalAns = 0
         
-        for rootVal in valSet:
-            numTrees = (numTrees + helper(rootVal))%MOD
+        for val in arr:
+            totalAns  = (totalAns + helper(val))%MOD
         
-        return numTrees
+        return totalAns
+            
