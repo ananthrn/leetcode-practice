@@ -22,5 +22,3 @@ class Solution:
         
         
         return mxString
-        
-        
