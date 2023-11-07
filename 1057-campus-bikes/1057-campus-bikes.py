@@ -26,6 +26,6 @@ class Solution:
                 workersAssigned += 1
             
         
-        return [workerToBikes[ind] for ind in range(len(workers))]
+        return workerToBikes
             
         
