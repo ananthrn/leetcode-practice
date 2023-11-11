@@ -8,7 +8,7 @@ import numpy as np
 
 class Solution:
     def getMatches(self, word1, word2) -> int:
-        return len([1 for char1, char2 in zip(word1, word2) if char1 == char2])
+        return np.sum(np.array(list(word1)) == np.array(list(word2)))
     
     def getHistogram(self, words: List[str]) -> List[collections.Counter]:
         histogram = [collections.Counter() for _ in range(6)]
