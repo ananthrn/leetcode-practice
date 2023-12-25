@@ -14,13 +14,14 @@ class Solution:
             
             ans = 0
             
-            if 1 <= int(s[:2]) <= 26:
-                ans += helper(s[2:])
-            ans += helper(s[1:])
+            return helper(s[1:]) + (helper(s[2:]) if 1 <= int(s[:2]) <= 26 else 0)
+#             if 1 <= int(s[:2]) <= 26:
+#                 ans += helper(s[2:])
+#             ans += helper(s[1:])
             
-            # print("s:", s)
-            # print("ans:", ans)
-            # print()
-            return ans
+#             # print("s:", s)
+#             # print("ans:", ans)
+#             # print()
+#             return ans
         
         return helper(s)
