@@ -40,9 +40,9 @@ class Solution:
                 
         dfs(root, 0)
         
-        print("valDepthMap: ", valDepthMap)
-        print("valHeightMap: ", valHeightMap)
-        print("depthHeightList: ", dict(depthHeightList))
+        # print("valDepthMap: ", valDepthMap)
+        # print("valHeightMap: ", valHeightMap)
+        # print("depthHeightList: ", dict(depthHeightList))
         
         ans = list(map(processQuery, queries))
         
