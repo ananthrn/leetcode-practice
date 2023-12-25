@@ -1,7 +1,7 @@
 class Solution:
     def numDecodings(self, s: str) -> int:
         
-        @cache
+        @lru_cache
         def helper(s: str) -> int:
             if s == "":
                 return 1
