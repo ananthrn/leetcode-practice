@@ -3,7 +3,7 @@ class Solution:
         prevSources = 0
         totalBeams = 0
         for row in bank:
-            numOnes = len([1 for val in row if val == '1'])
+            numOnes = len(list(filter(lambda val: val == '1', row)))
             
             if numOnes > 0:
                 totalBeams += prevSources * numOnes
