@@ -12,7 +12,7 @@ class Solution:
             if node is None:
                 return
             
-            print("node.val: ", node.val)
+            # print("node.val: ", node.val)
             
             if node.val == start:
                 startNode = node
