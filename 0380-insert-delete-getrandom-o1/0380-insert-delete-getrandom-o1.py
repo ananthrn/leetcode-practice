@@ -1,45 +1,38 @@
-import numpy as np
 class RandomizedSet:
 
     def __init__(self):
-        np.random.seed(42)
-        self.l = []
-        self.pos = {}
+        self.valToPos = dict()
+        self.lst = []
         
     def insert(self, val: int) -> bool:
-        if val in self.pos:
+        if val in self.valToPos:
             return False
         
-        self.l.append(val)
-        self.pos[val] = len(self.l) - 1
+        self.lst.append(val)
+        self.valToPos[val] = len(self.lst) - 1
         
         return True
 
     def remove(self, val: int) -> bool:
-        if val not in self.pos:
+        if val not in self.valToPos:
             return False
         
-        currentPos = self.pos[val]
-        endPos = len(self.l) - 1
-        endVal = self.l[-1]
+        pos = self.valToPos[val]
+        newVal = self.lst[-1]
         
-        if endPos == currentPos:
-            del self.pos[val]
-            self.l.pop()
-            return True
-        self.l[currentPos], self.l[-1] = self.l[-1], self.l[currentPos]
+        self.lst[-1], self.lst[pos] = self.lst[pos], self.lst[-1]
         
-        self.pos[val], self.pos[endVal] = endPos, currentPos
+        self.valToPos[newVal] = pos
         
-        self.l.pop()
-        del self.pos[val]
+        self.lst.pop()
+        del self.valToPos[val]
         
         return True
 
     def getRandom(self) -> int:
-        index = np.random.randint(0, len(self.l))
-        return self.l[index]
+        pos = random.randint(0, len(self.lst) - 1)
         
+        return self.lst[pos]
 
 
 # Your RandomizedSet object will be instantiated and called as such:
