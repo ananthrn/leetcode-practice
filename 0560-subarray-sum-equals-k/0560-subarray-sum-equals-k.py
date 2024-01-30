@@ -9,9 +9,7 @@ class Solution:
         ans = 0
         for num in nums:
             currentSum += num
-            # prefixSet[currentSum] += 1
             ans += prefixSet[currentSum - k]
-                
             prefixSet[currentSum] += 1
         
         return ans
