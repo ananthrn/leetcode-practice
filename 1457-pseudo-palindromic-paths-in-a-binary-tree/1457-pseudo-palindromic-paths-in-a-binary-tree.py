@@ -4,42 +4,36 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-from collections import Counter
 class Solution:
     def pseudoPalindromicPaths (self, root: Optional[TreeNode]) -> int:
-        def isLeaf(node):
+        def isLeaf(node: Optional[TreeNode]) -> bool:
             return node is not None and node.left is None and node.right is None
         
-        def isPseudoPalindrome(cnt: Dict) -> bool:
-            return len([key for key, val in cnt.items() if val%2==1]) <= 1
-            
-        cnt = Counter()
-        ans  = 0
+        def isPalindrome(cnt: collections.Counter) -> bool:
+            return len([key for key, value in cnt.items() if value%2 == 1]) <= 1
         
-        def helper(root):
+        ans = 0
+        cnt = collections.Counter()
+        
+        def helper(node: Optional[TreeNode]):
             nonlocal ans, cnt
-            if root is None:
-                return 
             
+            if node is None:
+                return
             
-            if isLeaf(root):
-                cnt[root.val] += 1
-                if isPseudoPalindrome(cnt):
+            if isLeaf(node):
+                cnt[node.val] += 1
+                if isPalindrome(cnt):
                     ans += 1
-                cnt[root.val] -= 1
+                cnt[node.val] -= 1
             else:
-                cnt[root.val] += 1
-                helper(root.left)
-                helper(root.right)
-                cnt[root.val] -= 1
+                cnt[node.val] += 1
+                helper(node.left)
+                helper(node.right)
+                cnt[node.val] -= 1
         
         helper(root)
+        
         return ans
-                
-                
-                
-            
-            
-            
-            
+        
         
