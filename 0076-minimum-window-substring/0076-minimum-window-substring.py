@@ -6,13 +6,14 @@ class Solution:
         sCtr = collections.Counter()
         
         bestString = None
-            
+        
+        bestInterval = None
         left, right = 0, -1
         
         while right < len(s):
             if sCtr >= tCtr:
-                if bestString is None or right -  left + 1 < len(bestString):
-                    bestString = s[left: right + 1]
+                if bestInterval is None or right -  left < bestInterval[1] - bestInterval[0]:
+                    bestInterval = left, right
                 sCtr[s[left]] -= 1
                 left += 1
             else:
@@ -21,7 +22,7 @@ class Solution:
                     sCtr[s[right]] +=1
         
         
-        return bestString or ""
+        return s[bestInterval[0]: bestInterval[1] + 1] if bestInterval is not None else ""
         
         
         
