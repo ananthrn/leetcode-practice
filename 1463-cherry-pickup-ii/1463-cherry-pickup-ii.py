@@ -12,14 +12,14 @@ class Solution:
                     mx = max(mx, helper(row + 1, robot_1_next, robot_2_next))
             
             if robot_1 == robot_2:
-                print("row, robot_1, robot_2: ", row, robot_1, robot_2)
-                print("ans: ", mx + grid[row][robot_1])
-                print()
+                # print("row, robot_1, robot_2: ", row, robot_1, robot_2)
+                # print("ans: ", mx + grid[row][robot_1])
+                # print()
                 return mx + grid[row][robot_1]
             else:
-                print("row, robot_1, robot_2: ", row, robot_1, robot_2)
-                print("ans: ", mx + grid[row][robot_1] + grid[row][robot_2])
-                print()
+                # print("row, robot_1, robot_2: ", row, robot_1, robot_2)
+                # print("ans: ", mx + grid[row][robot_1] + grid[row][robot_2])
+                # print()
                 return mx + grid[row][robot_1] + grid[row][robot_2]
         
         m, n = len(grid), len(grid[0])
