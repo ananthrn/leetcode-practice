@@ -20,9 +20,9 @@ class Solution:
             for nxt in adj[src]:
                 if nxt != par:
                     dfs(nxt, src)
-                    for val in costList[nxt]:
-                        costList[src].add(val)
-                        del costList[src][3:-3]
+                    
+                    costList[src].update(costList[nxt])
+                    del costList[src][3:-3]
             
             
             if len(costList[src]) < 3:
