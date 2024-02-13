@@ -21,8 +21,8 @@ class Solution:
                 if nxt != par:
                     dfs(nxt, src)
                     costList[src].update(costList[nxt])
+                    del costList[src][3:-3]
             
-            del costList[src][3:-3]
             
             if len(costList[src]) < 3:
                 coins[src] = 1
