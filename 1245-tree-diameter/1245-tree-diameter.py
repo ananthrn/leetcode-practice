@@ -20,14 +20,14 @@ class Solution:
         
         dfs(0, -1, 0)
         
-        print("depth from 0: ", depth)
+        # print("depth from 0: ", depth)
         farthestNode = max(range(n), key = depth.get)
         
         depth = collections.defaultdict(int)
         
         dfs(farthestNode, -1, 0)
         
-        print(f"depth from {farthestNode}: ", depth)
+        # print(f"depth from {farthestNode}: ", depth)
         return max(depth.values())
         
             
