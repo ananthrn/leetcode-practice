@@ -1,47 +1,49 @@
-from collections import defaultdict, deque
-from sortedcontainers import SortedList
 class Solution:
     def findAllPeople(self, n: int, meetings: List[List[int]], firstPerson: int) -> List[int]:
-        timeEdge =defaultdict(list)
         
-        times = SortedList([0])
-        timeEdge[0] = [(0, firstPerson)]
-        
-        for a, b, time in meetings:
-            timeEdge[time].append((a, b))
+        def getAdjacencyListFromEdgeList(edgeList):
+            adj = collections.defaultdict(list)
+            relevantPeopleWithSecret = set()
             
-            if time not in times:
-                times.add(time)
-        
-        secretHolders = {0}
-        def bfsUpdateSecretHolders(adj, currentSecrets):
-            Q = deque(list(currentSecrets))
-            seen = set(currentSecrets)
+            for u, v in edgeList:
+                adj[u].append(v)
+                adj[v].append(u)
+                
+                if u in peopleWithSecret:
+                    relevantPeopleWithSecret.add(u)
+                if v in peopleWithSecret:
+                    relevantPeopleWithSecret.add(v)
+                    
             
-            while len(Q) > 0:
+            return adj, relevantPeopleWithSecret
+        
+        def bfs(relevantPeopleWithSecret, adj: collections.defaultdict) -> Set[int]:
+            nonlocal peopleWithSecret
+            
+            Q = collections.deque(relevantPeopleWithSecret)
+            
+            while Q:
                 tp = Q.pop()
                 
-                for nxt in adj.get(tp, []):
-                    if nxt not in seen:
-                        secretHolders.add(nxt)
-                        seen.add(nxt)
+                for nxt in adj[tp]:
+                    if nxt not in peopleWithSecret:
                         Q.appendleft(nxt)
-            
+                        peopleWithSecret.add(nxt)
                         
-            
-        for nextTime in times:
-            adj = defaultdict(list)
-            currentSecrets = set()
-            
-            for a, b in timeEdge[nextTime]:
-                adj[a].append(b)
-                adj[b].append(a)
-                if a in secretHolders:
-                    currentSecrets.add(a)
-                if b in secretHolders:
-                    currentSecrets.add(b)
-                    
-            bfsUpdateSecretHolders(adj, currentSecrets)
+            # return srcNodes
+                
         
-        return secretHolders
+        peopleWithSecret = set([0, firstPerson])
         
+        timeToEdges = collections.defaultdict(list)
+        
+        for x, y, time in meetings:
+            timeToEdges[time].append((x, y))
+        
+        
+        for time in sorted(timeToEdges.keys()):
+            adj, relevantPeopleWithSecret = getAdjacencyListFromEdgeList(timeToEdges[time])
+            bfs(relevantPeopleWithSecret, adj)
+        
+        return list(peopleWithSecret)
+            
