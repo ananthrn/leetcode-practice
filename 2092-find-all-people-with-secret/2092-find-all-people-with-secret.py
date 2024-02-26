@@ -9,16 +9,16 @@ class Solution:
                 adj[u].append(v)
                 adj[v].append(u)
                 
-                if u in peopleWithSecret:
+                if u in allPeopleWithSecret:
                     relevantPeopleWithSecret.add(u)
-                if v in peopleWithSecret:
+                if v in allPeopleWithSecret:
                     relevantPeopleWithSecret.add(v)
                     
             
             return adj, relevantPeopleWithSecret
         
         def bfs(relevantPeopleWithSecret, adj: collections.defaultdict) -> Set[int]:
-            nonlocal peopleWithSecret
+            nonlocal allPeopleWithSecret
             
             Q = collections.deque(relevantPeopleWithSecret)
             
@@ -26,14 +26,14 @@ class Solution:
                 tp = Q.pop()
                 
                 for nxt in adj[tp]:
-                    if nxt not in peopleWithSecret:
+                    if nxt not in allPeopleWithSecret:
                         Q.appendleft(nxt)
-                        peopleWithSecret.add(nxt)
+                        allPeopleWithSecret.add(nxt)
                         
             # return srcNodes
                 
         
-        peopleWithSecret = set([0, firstPerson])
+        allPeopleWithSecret = set([0, firstPerson])
         
         timeToEdges = collections.defaultdict(list)
         
@@ -45,5 +45,5 @@ class Solution:
             adj, relevantPeopleWithSecret = getAdjacencyListFromEdgeList(timeToEdges[time])
             bfs(relevantPeopleWithSecret, adj)
         
-        return list(peopleWithSecret)
+        return list(allPeopleWithSecret)
             
