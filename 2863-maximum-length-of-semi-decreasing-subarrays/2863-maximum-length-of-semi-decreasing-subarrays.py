@@ -19,12 +19,12 @@ class Solution:
                 
                 print(f"i: {i}, nums[i]: {nums[i]}")
                 print(f"Before stack: {stack}")
-                while stack and (stack[-1][0] < nums[i] or stack[-1][1] <= i):
+#                 while stack and (stack[-1][0] < nums[i] or stack[-1][1] <= i):
                     
-                    if stack[-1][0] < nums[i] and i < stack[-1][1]:
-                        currentAnswer = max(currentAnswer, stack[-1][1] - i  + 1)
+#                     if stack[-1][0] < nums[i] and i < stack[-1][1]:
+#                         currentAnswer = max(currentAnswer, stack[-1][1] - i  + 1)
                         
-                    stack.pop()
+#                     stack.pop()
                 
                 stackMax = max([stack[j][1] - i  + 1 for j in range(len(stack)) if stack[j][0] < nums[i]], default=0)       
                 
