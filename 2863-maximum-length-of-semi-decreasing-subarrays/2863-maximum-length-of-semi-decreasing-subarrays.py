@@ -21,15 +21,15 @@ class Solution:
                 
                 currentMax = nums[i]
                 
-                # print(f"i: {i}, nums[i]: {nums[i]}")
-                # print(f"Before stack: {stack}")
+                print(f"i: {i}, nums[i]: {nums[i]}")
+                print(f"Before stack: {stack}")
                 
                 while stack and stack[-1][0] < nums[i]:
                     currentAnswer = max(currentAnswer, stack[-1][1] - i  + 1)
                     stack.pop()
 
-                # print(f"After stack: {stack}")
-                # print(f"currentAnswer: {currentAnswer}")
-                # print()
+                print(f"After stack: {stack}")
+                print(f"currentAnswer: {currentAnswer}")
+                print()
         
         return currentAnswer
