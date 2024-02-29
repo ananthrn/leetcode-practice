@@ -15,9 +15,9 @@ class Solution:
             
             # check parity 
             if not all([val % 2 == oddParity for val in vals]):
-                print("parity error:")
-                print(f"vals: {vals}")
-                print(f"oddParity: {oddParity}")
+                # print("parity error:")
+                # print(f"vals: {vals}")
+                # print(f"oddParity: {oddParity}")
                 
                 return False
             
@@ -25,8 +25,8 @@ class Solution:
             
             # check sortedness
             if not all([orderCheck (vals[i], vals[i+1]) for i in range(len(vals) -1 )]):
-                print("sortedness error:")
-                print(f"vals: {vals}")
+                # print("sortedness error:")
+                # print(f"vals: {vals}")
                 # print(f"oddParity: {oddParity}")
                 return False
             
