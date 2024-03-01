@@ -5,8 +5,5 @@ class Solution:
         
         cnt = collections.Counter("".join(words))
         
-        n = len(words)
-        
-        val = list(cnt.values())[0]
         
         return all([cntVal % len(words) == 0 for cntVal in cnt.values()])
