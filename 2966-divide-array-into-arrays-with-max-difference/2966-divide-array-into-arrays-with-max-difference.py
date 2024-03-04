@@ -6,11 +6,3 @@ class Solution:
             return [nums[startIndex: startIndex + 3] for startIndex in range(0, len(nums), 3)]
         else:
             return []
-#         ans = []
-#         for startIndex in range(0, len(nums), 3):
-#             if nums[startIndex + 2] - nums[startIndex] <= k:
-#                 ans.append(nums[startIndex:startIndex + 3])
-#             else:
-#                 return []
-        
-#         return ans
