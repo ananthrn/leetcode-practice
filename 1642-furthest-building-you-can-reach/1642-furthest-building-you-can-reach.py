@@ -10,9 +10,6 @@ class Solution:
                 if heights[index + 1] > heights[index]:
                     climbs.append(heights[index + 1] - heights[index])
             
-            # print("reachableIndex: ", reachableIndex)
-            # print("climbs: ", sorted(climbs))
-            # print()
             for climb in sorted(climbs):
                 if bricks >= climb:
                     bricks -= climb
