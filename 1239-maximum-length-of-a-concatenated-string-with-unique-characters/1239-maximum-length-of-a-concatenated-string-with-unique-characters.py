@@ -1,6 +1,7 @@
 class Solution:
     def maxLength(self, arr: List[str]) -> int:
         
+        @cache
         def helper(currentIndex: int, currentSet: Set[chr]) -> int:
             if currentIndex >= len(arr):
                 return 0
@@ -20,7 +21,7 @@ class Solution:
             ]
         )
         
-        print("ineligible: ", ineligible)
+        # print("ineligible: ", ineligible)
         ans = helper(0, frozenset())
         
         return ans
