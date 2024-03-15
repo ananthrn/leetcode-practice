@@ -1,36 +1,69 @@
-from sortedcontainers import SortedList
 class Solution:
     def furthestBuilding(self, heights: List[int], bricks: int, ladders: int) -> int:
         
-        ladderSet = SortedList()
-        for ind in range(len(heights) - 1):
-            currentHeight = heights[ind]
-            nextHeight = heights[ind + 1]
+        @lru_cache
+        def helper(currentIndex: int, bricks: int, ladders: int) -> int:
+            if currentIndex == len(heights) - 1:
+                return currentIndex
             
-            climb = nextHeight - currentHeight
+            if heights[currentIndex] >= heights[currentIndex + 1]:
+                return helper(currentIndex + 1, bricks, ladders)
             
-            if climb <= 0 :
-                continue
-            else:
-                # 
-                if len(ladderSet) < ladders:
-                    ladderSet.add(climb)
-                else:
-                    
-                    if ladders == 0 or climb <= ladderSet[0]:
-                        # climb is lower than the lowest climb so far
-                        # use bricks
-                        bricks -= climb
-                    else:
-                        # use a ladder for this one and replace another ladder
-                        # with bricks
-                        replacedClimb = ladderSet.pop(0)
-                        ladderSet.add(climb)
-                        bricks -= replacedClimb
-                
-                if bricks < 0:
-                    return ind
-                    
+            currentMax = currentIndex
+            
+            if ladders > 0:
+                currentMax = max(
+                    currentMax,
+                    helper(currentIndex + 1, bricks, ladders - 1)
+                )
+            
+            if bricks >= heights[currentIndex  + 1] - heights[currentIndex]:
+                currentMax = max(
+                    currentMax,
+                    helper(
+                        currentIndex + 1, 
+                        bricks - (heights[currentIndex  + 1] - heights[currentIndex]), 
+                        ladders
+                    )
+                )
+            
+            return currentMax
         
-        return len(heights) - 1
+        
+        currentIndex = 0
+        
+        climbHeap = []
+        
+        
+        while currentIndex < len(heights) - 1:
+            
+            if heights[currentIndex + 1] > heights[currentIndex]:
+                heightDifference = heights[currentIndex + 1] - heights[currentIndex]
+                
+                # print("currentIndex: ", currentIndex)
+                # print("heightDifference: ", heightDifference)
+                # print("climbHeap: ", climbHeap)
+                # print()
+                if len(climbHeap) < ladders:
+                    heapq.heappush(climbHeap, heightDifference)
+                elif (not climbHeap or climbHeap[0] >= heightDifference):
+                    if bricks >= heightDifference:
+                        bricks -= heightDifference
+                    else:
+                        return currentIndex
+                    
+                else:
+                    minVal = heapq.heappop(climbHeap)
+                    heapq.heappush(climbHeap, heightDifference)
+                    
+                    if bricks >= minVal:
+                        bricks -= minVal
+                    else:
+                        return currentIndex
+                    
+                    
+            
+            currentIndex += 1
+        
+        return currentIndex
         
