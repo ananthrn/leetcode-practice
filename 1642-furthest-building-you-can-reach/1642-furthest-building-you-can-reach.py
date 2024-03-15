@@ -46,7 +46,7 @@ class Solution:
                 # print()
                 if len(climbHeap) < ladders:
                     heapq.heappush(climbHeap, heightDifference)
-                elif (not climbHeap or climbHeap[0] >= heightDifference):
+                elif (len(climbHeap) == 0 or climbHeap[0] >= heightDifference):
                     if bricks >= heightDifference:
                         bricks -= heightDifference
                     else:
