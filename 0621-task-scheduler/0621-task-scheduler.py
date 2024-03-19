@@ -8,7 +8,7 @@ class Solution:
         
         idle_time = (f_max - 1) * n
         
-        while freqs:
+        while freqs and idle_time >= 0:
             f_next = freqs.pop()
             
             idle_time -= min(f_max - 1, f_next)
