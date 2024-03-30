@@ -7,7 +7,7 @@ class Solution:
         ans = 0
         for right in range(len(s)):
             counter[s[right]] += 1
-            print("right: ", right)
+            # print("right: ", right)
             while len(counter.keys()) > k:
                 # print("left: ", left)
                 counter[s[left]] -= 1
