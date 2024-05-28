@@ -21,6 +21,8 @@ class Solution:
                     del forward[p]
                     del backward[s]
                     
+                    
+                    
                 elif p in forward and forward[p] == s and backward[s] == p:
                     if helper(pattern[1:], string[length:], forward, backward):
                         return True
