@@ -1,14 +1,22 @@
-from sortedcontainers import SortedList
+import sortedcontainers
 class MRUQueue:
 
     def __init__(self, n: int):
-        self.lst = list(range(1, n + 1))
+        self.sd = sortedcontainers.SortedDict(
+            {
+                key: key for key in range(1, n + 1)
+            }
+        ) 
+        
+        self.maxKey = n + 1
 
     def fetch(self, k: int) -> int:
-        val = self.lst[k - 1]
-        del self.lst[k-1]
-        self.lst.append(val)
-        return val
+        _, value = self.sd.popitem(index=k - 1)
+        
+        self.sd[self.maxKey] = value
+        self.maxKey += 1
+        
+        return value
 
 
 # Your MRUQueue object will be instantiated and called as such:
