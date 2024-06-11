@@ -40,6 +40,6 @@ class Solution:
     def replaceWords(self, dictionary: List[str], sentence: str) -> str:
         trie = Trie(dictionary)
         
-        newWords = [trie.search(word) for word in sentence.split()]
+        newWords = list(map(trie.search, sentence.split()))
         
         return " ".join(newWords)
