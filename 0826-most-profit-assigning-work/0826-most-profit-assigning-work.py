@@ -12,10 +12,10 @@ class Solution:
         print("sortedDiffs: ", sortedDiffs)
         for work in worker:
             index = sortedDiffs.bisect_left([work, inf])
-            print("work:", work)
-            print("index - 1:", index - 1)
-            print("val: ", sortedDiffs[index - 1])
-            print()
+            # print("work:", work)
+            # print("index - 1:", index - 1)
+            # print("val: ", sortedDiffs[index - 1])
+            # print()
             if index != 0:
                 answer += sortedDiffs[index - 1][1]
         
