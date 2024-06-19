@@ -26,9 +26,7 @@ class Solution:
         while low <= high:
             mid = (high + low)//2
             
-            check = getBouqets(mid)
-            
-            if check >= m:
+            if getBouqets(mid) >= m:
                 earliestDay = min(earliestDay, mid)
                 high = mid -1
             else:
