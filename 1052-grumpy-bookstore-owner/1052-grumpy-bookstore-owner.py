@@ -14,9 +14,9 @@ class Solution:
         for j in range(minutes, n):
             bestVal = max(bestVal, disCustomers[j] - disCustomers[j - minutes])
         
-        print("customers:", customers)
-        print("disCustomers: ", disCustomers)
-        print("bestVal: ", bestVal)
+        # print("customers:", customers)
+        # print("disCustomers: ", disCustomers)
+        # print("bestVal: ", bestVal)
         
         return sum(customers) - disCustomers[-1] + bestVal
         
