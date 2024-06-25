@@ -12,17 +12,31 @@ class Solution:
             minHeight = min(minHeight, warehouse[ind])
             effectiveHeights[ind] = max(effectiveHeights[ind ], minHeight)
         
-        print("effectiveHeights: ", effectiveHeights)
         
         effectiveHeights = sorted(effectiveHeights)
         boxes = sorted(boxes)
         
-        count = 0
-        boxIndex = 0
+        print("effectiveHeights: ", effectiveHeights)
+        print("boxes: ", boxes)
+#         count = 0
+#         boxIndex = 0
         
-        for effectiveHeight in effectiveHeights:
-            if boxIndex < len(boxes) and boxes[boxIndex] <= effectiveHeight:
+#         # go by effectiveHeight order
+#         for effectiveHeight in effectiveHeights:
+#             if boxIndex < len(boxes) and boxes[boxIndex] <= effectiveHeight:
+#                 count += 1
+#                 boxIndex += 1
+        
+        count = 0
+        heightIndex = 0
+        # go by box order
+        for box in boxes:
+            while heightIndex < len(effectiveHeights) and box > effectiveHeights[heightIndex]:
+                heightIndex += 1
+            
+            if heightIndex < len(effectiveHeights):
                 count += 1
-                boxIndex += 1
+                heightIndex += 1
         
         return count
+            
