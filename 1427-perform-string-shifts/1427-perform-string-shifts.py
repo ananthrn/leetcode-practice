@@ -4,7 +4,7 @@ class Solution:
             amount = amount % len(s)
             if direction == 1:
                 print("")
-                return s[len(s)-amount:] + s[:len(s)-amount] 
+                return s[-amount:] + s[:-amount] 
             else:
                 return s[amount:] + s[:amount] 
         
