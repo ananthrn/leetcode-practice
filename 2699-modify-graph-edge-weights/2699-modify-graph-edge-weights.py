@@ -45,7 +45,7 @@ class Solution:
         
         initialDistance = runDijkstra(source, destination)
         
-        print("initialDistance: ", initialDistance)
+        # print("initialDistance: ", initialDistance)
         if initialDistance < target:
             return []
         
@@ -54,11 +54,11 @@ class Solution:
         
         for u, v, weight in edges:
             if weight == -1:
-                print(f"modifying {u} -> {v} to 1")
+                # print(f"modifying {u} -> {v} to 1")
                 adj[u][v] = adj[v][u] = 1
                 
                 newDistance = runDijkstra(source, destination)
-                print(f"newDistance: {newDistance}")
+                # print(f"newDistance: {newDistance}")
                 
                 # you can reach the target
                 if newDistance <= target:
