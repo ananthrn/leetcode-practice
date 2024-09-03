@@ -1,34 +1,34 @@
-from sortedcontainers import SortedList
-
 class Solution:
-    def dijkstra(self, n: int, start: int, end: int, adj: Dict[int, List[int]]) -> float:
-        Q = SortedList([[1.0, start]])
-        prob = dict()
-        
-        while(not len(Q) == 0):
-            probNode, tpNode = Q.pop()
-            
-            prob[tpNode] = probNode
-            
-            if tpNode == end:
-                return probNode
-            
-            for nxNode, succProb in adj.get(tpNode, []):
-                if nxNode not in prob:
-                    Q.add([succProb * probNode, nxNode])
+    def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start_node: int, end_node: int) -> float:
         
         
-        return prob.get(end, 0.0)
+        def dijkstra(src: int, dest: int) -> float:
+            visited = set()
+            PQ = [(-1.0, src)]
             
-    
-    def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start: int, end: int) -> float:
-        adj = defaultdict(list)
-        for edge, prob in zip(edges, succProb):
-            adj[edge[0]].append([edge[1], prob])
-            adj[edge[1]].append([edge[0], prob])
+            while PQ:
+                topProb, topNode = heapq.heappop(PQ)
                 
-        return self.dijkstra(n, start, end, adj)
+                if topNode == dest:
+                    return -topProb
+                
+                if topNode not in visited:
+                    visited.add(topNode)
+                    
+                    for nextNode, nextWeight in adj[topNode]:
+                        if nextNode not in visited:
+                            heapq.heappush(PQ, (topProb * nextWeight, nextNode))
+            
+            return 0.0
+                
         
-
+        adj = collections.defaultdict(list)
         
+        for (u, v), weight in zip(edges, succProb):
+            adj[u].append((v, weight))
+            adj[v].append((u, weight))
+        
+        prob = dijkstra(start_node, end_node)
+        
+        return prob
         
