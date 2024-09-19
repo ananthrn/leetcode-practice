@@ -6,6 +6,8 @@ class Solution:
             "+": lambda a, b: a + b,
             "-": lambda a, b: a - b,
         }
+        
+        @cache
         def backtrack(expr: str) -> List[int]:
             if expr.isnumeric():
                 return [int(expr)]
