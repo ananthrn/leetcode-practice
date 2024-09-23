@@ -1,5 +1,23 @@
 class Solution:
     def lexicalOrder(self, n: int) -> List[int]:
-        sortedStrings = sorted([str(num) for num in range(1, n + 1)])
+        def generate_lexicographic(start_number: int) -> None:
+            if start_number > n:
+                return
+            
+            result.append(start_number)
+            for next_digit in range(10):
+                next_number = start_number * 10  + next_digit
+                
+                if next_number <= n:
+                    generate_lexicographic(next_number)
+                else:
+                    return
         
-        return [int(val) for val in sortedStrings]
+        
+        result = []
+        
+        for first_digit in range(1, 10):
+            generate_lexicographic(first_digit)
+        
+        
+        return result
