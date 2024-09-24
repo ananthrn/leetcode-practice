@@ -28,13 +28,7 @@ class Trie:
             tp = Q.pop()
             
             if tp.word is not None:
-                # print("current longest", currentLongestWord)
-                # print("tp.word: ", tp.word)
-                # print("tuples: ", (len(tp.word), currentLongestWord))
-                # print("tuple second: ", (len(currentLongestWord), tp.word))
-                # print("greater? :", (len(tp.word), currentLongestWord) > (len(currentLongestWord), tp.word))
-                # print()
-                if (len(tp.word), currentLongestWord) > (len(currentLongestWord), tp.word):
+                if len(tp.word) > len(currentLongestWord) or (len(tp.word) == len(currentLongestWord) and tp.word < currentLongestWord):
                     currentLongestWord = tp.word
                 
                 for nextNode in tp.children.values():
