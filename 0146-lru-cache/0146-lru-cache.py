@@ -121,7 +121,7 @@ class LRUCache:
         if key in self.dict:
             
             currentNode = self.dict[key]
-            print("Deleting: ", currentNode.key, currentNode.val)
+            # print("Deleting: ", currentNode.key, currentNode.val)
             
             currentKey, currentValue = self.list.deleteNode(self.dict[key])
             
