@@ -16,9 +16,9 @@ class Solution:
             if index == len(charList) - 1:
                 newList.append(charList[index])
                 
-            print("charList", charList)
-            print("newList: ", newList)
-            print()
+            # print("charList", charList)
+            # print("newList: ", newList)
+            # print()
             if len(newList) == len(charList):
                 return len(newList)
             else:
